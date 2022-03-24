@@ -1,7 +1,7 @@
 #include <Uefi.h>
 #include <Base.h>
-//StrHexToUintn function is in the BaseLib.
-#include <Library/BaseLib.h>
+
+#include <Library/BaseLib.h> // StrDecimalToUintn() function
 #include <Library/UefiLib.h>
 
 #include "SMBIOS.h"
