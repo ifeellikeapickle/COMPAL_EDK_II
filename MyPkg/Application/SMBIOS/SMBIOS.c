@@ -16,6 +16,7 @@ UefiMain(
 
     // Initial the SMBIOS Table
     Status = LibSmbiosInit ();
+    
     mSmbiosStruct->Raw  = (UINT8 *) (UINTN) (mSmbiosTable->TableAddress);
 
     Status = GetInputParameters (ImageHandle, SystemTable);
