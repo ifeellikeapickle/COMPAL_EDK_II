@@ -1,0 +1,1 @@
+GenSec -s EFI_SECTION_PEI_DEPEX -o q:\Build\NT32IA32\DEBUG_DEVTLS\FV\Ffs\A3610442-E69F-4DF3-82CA-2360C4031A23ReportStatusCodeRouterPei\A3610442-E69F-4DF3-82CA-2360C4031A23SEC1.1.dpx q:\Build\NT32IA32\DEBUG_DEVTLS\IA32\MdeModulePkg\Universal\ReportStatusCodeRouter\Pei\ReportStatusCodeRouterPei\OUTPUT\ReportStatusCodeRouterPei.depex

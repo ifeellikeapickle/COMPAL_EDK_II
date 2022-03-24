@@ -1,0 +1,8 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001B
+  PACKAGE_NAME                   = MyPkg
+  PACKAGE_GUID                   = 549867eb-059f-44d1-b1e1-13ec2f96c7a9
+  PACKAGE_VERSION                = 0.01
+
+[Includes]
+  Include

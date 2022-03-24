@@ -1,0 +1,1 @@
+GenFfs -t EFI_FV_FILETYPE_DRIVER -g 6d6963ab-906d-4a65-a7ca-bd40e5d6af4d -o q:\Build\NT32IA32\DEBUG_DEVTLS\FV\Ffs\6d6963ab-906d-4a65-a7ca-bd40e5d6af4dTcp4Dxe\6d6963ab-906d-4a65-a7ca-bd40e5d6af4d.ffs -i q:\Build\NT32IA32\DEBUG_DEVTLS\FV\Ffs\6d6963ab-906d-4a65-a7ca-bd40e5d6af4dTcp4Dxe\6d6963ab-906d-4a65-a7ca-bd40e5d6af4dSEC2.com

@@ -1,0 +1,235 @@
+ ScsiDisk
+
+ Timestamp is 620cbe05 (Wed Feb 16 17:04:05 2022)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00003fb3H .text                   CODE
+ 0002:00000000 00000c7eH .rdata                  DATA
+ 0002:00000c80 0000007dH .rdata$debug            DATA
+ 0003:00000000 000001c0H .data                   DATA
+ 0003:000001c0 00000028H .bss                    DATA
+ 0004:00000000 00000050H .edata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0001:00000000       __ModuleEntryPoint         00011000 f   UefiDriverEntryPoint:DriverEntryPoint.obj
+ 0001:00000054       _ProcessLibraryConstructorList 00011054 f   ScsiDisk:AutoGen.obj
+ 0001:000001e7       _ProcessLibraryDestructorList 000111e7 f   ScsiDisk:AutoGen.obj
+ 0001:0000022f       _AllocateAlignedBuffer     0001122f f   ScsiDisk:ScsiDisk.obj
+ 0001:00000252       _FreeAlignedBuffer         00011252 f   ScsiDisk:ScsiDisk.obj
+ 0001:00000279       _ScsiDiskDriverBindingSupported 00011279 f   ScsiDisk:ScsiDisk.obj
+ 0001:000002f0       _ScsiDiskDriverBindingStart 000112f0 f   ScsiDisk:ScsiDisk.obj
+ 0001:00000545       _ScsiDiskDriverBindingStop 00011545 f   ScsiDisk:ScsiDisk.obj
+ 0001:000005ea       _ScsiDiskReset             000115ea f   ScsiDisk:ScsiDisk.obj
+ 0001:0000065b       _ScsiDiskReadBlocks        0001165b f   ScsiDisk:ScsiDisk.obj
+ 0001:00000795       _ScsiDiskWriteBlocks       00011795 f   ScsiDisk:ScsiDisk.obj
+ 0001:000008cf       _ScsiDiskFlushBlocks       000118cf f   ScsiDisk:ScsiDisk.obj
+ 0001:000008d2       _ScsiDiskDetectMedia       000118d2 f   ScsiDisk:ScsiDisk.obj
+ 0001:00000aa9       _ScsiDiskInquiryDevice     00011aa9 f   ScsiDisk:ScsiDisk.obj
+ 0001:00000d41       _ScsiDiskTestUnitReady     00011d41 f   ScsiDisk:ScsiDisk.obj
+ 0001:00000e6c       _DetectMediaParsingSenseKeys 00011e6c f   ScsiDisk:ScsiDisk.obj
+ 0001:00001078       _ScsiDiskReadCapacity      00012078 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001298       _CheckHostAdapterStatus    00012298 f   ScsiDisk:ScsiDisk.obj
+ 0001:000012da       _CheckTargetStatus         000122da f   ScsiDisk:ScsiDisk.obj
+ 0001:00001314       _ScsiDiskRequestSenseKeys  00012314 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001465       _GetMediaInfo              00012465 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001557       _ScsiDiskReadSectors       00012557 f   ScsiDisk:ScsiDisk.obj
+ 0001:0000165f       _ScsiDiskWriteSectors      0001265f f   ScsiDisk:ScsiDisk.obj
+ 0001:00001767       _ScsiDiskRead10            00012767 f   ScsiDisk:ScsiDisk.obj
+ 0001:000018f4       _ScsiDiskWrite10           000128f4 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001a81       _ScsiDiskRead16            00012a81 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001c15       _ScsiDiskWrite16           00012c15 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001da9       _ScsiDiskIsMediaError      00012da9 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001de8       _ReleaseScsiDiskDeviceResources 00012de8 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001e55       _DetermineInstallBlockIo   00012e55 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001e93       _GetParentProtocol         00012e93 f   ScsiDisk:ScsiDisk.obj
+ 0001:00001f1d       _ScsiDiskInfoInquiry       00012f1d f   ScsiDisk:ScsiDisk.obj
+ 0001:00001f7a       _ScsiDiskInfoIdentify      00012f7a f   ScsiDisk:ScsiDisk.obj
+ 0001:0000200a       _ScsiDiskInfoSenseData     0001300a f   ScsiDisk:ScsiDisk.obj
+ 0001:00002010       _ScsiDiskInfoWhichIde      00013010 f   ScsiDisk:ScsiDisk.obj
+ 0001:00002087       _AtapiIdentifyDevice       00013087 f   ScsiDisk:ScsiDisk.obj
+ 0001:000020f7       _InitializeInstallDiskInfo 000130f7 f   ScsiDisk:ScsiDisk.obj
+ 0001:00002236       _ScsiDiskComponentNameGetDriverName 00013236 f   ScsiDisk:ComponentName.obj
+ 0001:00002260       _ScsiDiskComponentNameGetControllerName 00013260 f   ScsiDisk:ComponentName.obj
+ 0001:000022fb       _MultU64x32                000132fb f   BaseLib:MultU64x32.obj
+ 0001:00002315       _DebugPrint                00013315 f   PeiDxeDebugLibReportStatusCode:DebugLib.obj
+ 0001:0000248e       _DebugAssert               0001348e f   PeiDxeDebugLibReportStatusCode:DebugLib.obj
+ 0001:0000254e       _CopyGuid                  0001354e f   BaseMemoryLibOptDxe:MemLibGuid.obj
+ 0001:00002578       _CompareGuid               00013578 f   BaseMemoryLibOptDxe:MemLibGuid.obj
+ 0001:000025d4       _CopyMem                   000135d4 f   BaseMemoryLibOptDxe:CopyMemWrapper.obj
+ 0001:0000262d       _ZeroMem                   0001362d f   BaseMemoryLibOptDxe:ZeroMemWrapper.obj
+ 0001:00002673       _InternalAllocateAlignedPages 00013673 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:000027db       _FreeAlignedPages          000137db f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:0000283c       _InternalAllocatePool      0001383c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00002861       _InternalAllocateZeroPool  00013861 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:0000287c       _InternalAllocateCopyPool  0001387c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:000028dc       _FreePool                  000138dc f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00002918       _DevicePathType            00013918 f   UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0001:00002936       _DevicePathSubType         00013936 f   UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0001:00002955       _DevicePathNodeLength      00013955 f   UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0001:00002991       _NextDevicePathNode        00013991 f   UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0001:000029b8       _IsDevicePathEndType       000139b8 f   UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0001:000029e2       _IsDevicePathEnd           000139e2 f   UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0001:00002a1c       _CompareIso639LanguageCode 00013a1c f   UefiLib:UefiLib.obj
+ 0001:00002a38       _EfiTestManagedDevice      00013a38 f   UefiLib:UefiLib.obj
+ 0001:00002a8c       _EfiTestChildHandle        00013a8c f   UefiLib:UefiLib.obj
+ 0001:00002b11       _LookupUnicodeString2      00013b11 f   UefiLib:UefiLib.obj
+ 0001:00002c06       _AddUnicodeString2         00013c06 f   UefiLib:UefiLib.obj
+ 0001:00002da7       _EfiLibInstallDriverBindingComponentName2 00013da7 f   UefiLib:UefiDriverModel.obj
+ 0001:00002e1a       _HobLibConstructor         00013e1a f   DxeHobLib:HobLib.obj
+ 0001:00002eba       _GetHobList                00013eba f   DxeHobLib:HobLib.obj
+ 0001:00002edd       _GetNextHob                00013edd f   DxeHobLib:HobLib.obj
+ 0001:00002f1c       _GetDebugPrintErrorLevel   00013f1c f   DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0001:0000300a       _GetDebugMask              0001400a f   DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0001:00003023       _SetDebugMask              00014023 f   DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0001:0000302f       _ScsiTestUnitReadyCommand  0001402f f   UefiScsiLib:UefiScsiLib.obj
+ 0001:00003104       _ScsiInquiryCommandEx      00014104 f   UefiScsiLib:UefiScsiLib.obj
+ 0001:0000321f       _ScsiRequestSenseCommand   0001421f f   UefiScsiLib:UefiScsiLib.obj
+ 0001:00003303       _ScsiReadCapacityCommand   00014303 f   UefiScsiLib:UefiScsiLib.obj
+ 0001:0000340e       _ScsiReadCapacity16Command 0001440e f   UefiScsiLib:UefiScsiLib.obj
+ 0001:0000351f       _ScsiRead10Command         0001451f f   UefiScsiLib:UefiScsiLib.obj
+ 0001:0000365b       _ScsiWrite10Command        0001465b f   UefiScsiLib:UefiScsiLib.obj
+ 0001:00003797       _ScsiRead16Command         00014797 f   UefiScsiLib:UefiScsiLib.obj
+ 0001:000038da       _ScsiWrite16Command        000148da f   UefiScsiLib:UefiScsiLib.obj
+ 0001:00003a1d       _InternalGetReportStatusCode 00014a1d f   DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0001:00003a56       _InternalReportStatusCode  00014a56 f   DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0001:00003a88       _ReportStatusCodeEx        00014a88 f   DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0001:00003bdf       _InternalSafeStringNoAsciiStrOverlap 00014bdf f   BaseLib:SafeString.obj
+ 0001:00003c03       _AsciiStrnLenS             00014c03 f   BaseLib:SafeString.obj
+ 0001:00003c1d       _AsciiStrCpyS              00014c1d f   BaseLib:SafeString.obj
+ 0001:00003cd8       _StrLen                    00014cd8 f   BaseLib:String.obj
+ 0001:00003d2b       _AsciiStrLen               00014d2b f   BaseLib:String.obj
+ 0001:00003d78       _AsciiStrnCmp              00014d78 f   BaseLib:String.obj
+ 0001:00003e0b       _WriteUnaligned16          00014e0b f   BaseLib:Unaligned.obj
+ 0001:00003e2a       _ReadUnaligned24           00014e2a f   BaseLib:Unaligned.obj
+ 0001:00003e4a       _WriteUnaligned32          00014e4a f   BaseLib:Unaligned.obj
+ 0001:00003e6a       _ReadUnaligned64           00014e6a f   BaseLib:Unaligned.obj
+ 0001:00003e8b       _WriteUnaligned64          00014e8b f   BaseLib:Unaligned.obj
+ 0001:00003ec0       _InternalMemCopyMem        00014ec0 f   BaseMemoryLibOptDxe:CopyMem.obj
+ 0001:00003f30       _InternalMemZeroMem        00014f30 f   BaseMemoryLibOptDxe:ZeroMem.obj
+ 0001:00003f50       _InternalMemSetMem         00014f50 f   BaseMemoryLibOptDxe:SetMem.obj
+ 0001:00003f7c       _InternalMemSetMem32       00014f7c f   BaseMemoryLibOptDxe:SetMem32.obj
+ 0001:00003f94       _InternalMemSetMem64       00014f94 f   BaseMemoryLibOptDxe:SetMem64.obj
+ 0002:0000001c       ??_C@_0CB@DMEJJJHA@?6ASSERT_EFI_ERROR?5?$CIStatus?5?$DN?5?$CFr?$CJ?6@ 0001501c     UefiDriverEntryPoint:DriverEntryPoint.obj
+ 0002:00000040       ??_C@_0BE@DCHLEIGN@?$CBEFI_ERROR?5?$CIStatus?$CJ?$AA@ 00015040     UefiDriverEntryPoint:DriverEntryPoint.obj
+ 0002:00000058       ??_C@_0GC@BGLDJJND@q?3?2Build?2NT32IA32?2DEBUG_DEVTLS?2I@ 00015058     ScsiDisk:AutoGen.obj
+ 0002:000000bc       __gUefiDriverRevision      000150bc     ScsiDisk:AutoGen.obj
+ 0002:000000c0       ??_C@_0DA@KBPNLHJN@q?3?2MdeModulePkg?2Bus?2Scsi?2ScsiDis@ 000150c0     ScsiDisk:ScsiDisk.obj
+ 0002:000000f0       ??_C@_1CC@IOIHLHAL@?$AAS?$AAC?$AAS?$AAI?$AA?5?$AAD?$AAi?$AAs?$AAk?$AA?5?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?$AA@ 000150f0     ScsiDisk:ScsiDisk.obj
+ 0002:00000114       ??_C@_03LKLGDMJI@eng?$AA@  00015114     ScsiDisk:ScsiDisk.obj
+ 0002:00000118       ??_C@_02LFNMGJAP@en?$AA@   00015118     ScsiDisk:ScsiDisk.obj
+ 0002:0000011c       ??_C@_0BF@NDBIKIKC@CR?5has?5Bad?5Signature?$AA@ 0001511c     ScsiDisk:ScsiDisk.obj
+ 0002:00000134       ??_C@_0BN@NIIHGIFL@ScsiDisk?3?5ScsiDiskIsNoMedia?6?$AA@ 00015134     ScsiDisk:ScsiDisk.obj
+ 0002:00000154       ??_C@_0CC@GEAKJFCB@ScsiDisk?3?5ScsiDiskIsMediaChange?$CB@ 00015154     ScsiDisk:ScsiDisk.obj
+ 0002:00000178       ??_C@_0CC@MNLEDFOI@ScsiDisk?3?5ScsiDiskIsResetBefore?$CB@ 00015178     ScsiDisk:ScsiDisk.obj
+ 0002:0000019c       ??_C@_0CA@LMJOFCIJ@ScsiDisk?3?5ScsiDiskIsMediaError?6?$AA@ 0001519c     ScsiDisk:ScsiDisk.obj
+ 0002:000001bc       ??_C@_0CD@MLIDADHC@ScsiDisk?3?5ScsiDiskIsHardwareErro@ 000151bc     ScsiDisk:ScsiDisk.obj
+ 0002:000001e0       ??_C@_0CC@CFFODBFA@ScsiDisk?3?5ScsiDiskDriveNotReady?$CB@ 000151e0     ScsiDisk:ScsiDisk.obj
+ 0002:00000204       ??_C@_0CI@GCMENDMP@ScsiDisk?3?5Sense?5Key?5?$DN?50x?$CFx?5ASC?5?$DN@ 00015204     ScsiDisk:ScsiDisk.obj
+ 0002:0000022c       ??_C@_0CL@LNFKLFDP@ScsiDiskRead10?3?5Check?5Condition?5@ 0001522c     ScsiDisk:ScsiDisk.obj
+ 0002:00000258       ??_C@_0CM@KKDLEADD@ScsiDiskWrite10?3?5Check?5Condition@ 00015258     ScsiDisk:ScsiDisk.obj
+ 0002:00000284       ??_C@_0CL@DEBIPPAP@ScsiDiskRead16?3?5Check?5Condition?5@ 00015284     ScsiDisk:ScsiDisk.obj
+ 0002:000002b0       ??_C@_0CM@CDHJAKAD@ScsiDiskWrite16?3?5Check?5Condition@ 000152b0     ScsiDisk:ScsiDisk.obj
+ 0002:000002dc       ??_C@_1CC@HDHLMANH@?$AAS?$AAc?$AAs?$AAi?$AA?5?$AAD?$AAi?$AAs?$AAk?$AA?5?$AAD?$AAr?$AAi?$AAv?$AAe?$AAr?$AA?$AA@ 000152dc     ScsiDisk:ComponentName.obj
+ 0002:00000300       ??_C@_06DALJLGPG@eng?$DLen?$AA@ 00015300     ScsiDisk:ComponentName.obj
+ 0002:00000308       ??_C@_0DF@GJIPIHG@q?3?2MdeModulePkg?2Bus?2Scsi?2ScsiDis@ 00015308     ScsiDisk:ComponentName.obj
+ 0002:00000340       ??_C@_0BH@LKMBFCBF@Format?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015340     PeiDxeDebugLibReportStatusCode:DebugLib.obj
+ 0002:00000358       ??_C@_0EN@CNOKPIHJ@q?3?2IntelFrameworkModulePkg?2Libra@ 00015358     PeiDxeDebugLibReportStatusCode:DebugLib.obj
+ 0002:000003a8       ??_C@_0CI@HIINONDG@?$CICHAR8?5?$CK?$CJBaseListMarker?5?$DM?$DN?5Forma@ 000153a8     PeiDxeDebugLibReportStatusCode:DebugLib.obj
+ 0002:000003d0       ??_C@_0BH@IACGKAP@Buffer?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 000153d0     PeiDxeDebugLibReportStatusCode:DebugLib.obj
+ 0002:000003e8       ??_C@_0CL@OBMFBPED@Length?5?$DM?$DN?5?$CI0xFFFFFFFF?5?9?5?$CIUINTN?$CJB@ 000153e8     BaseMemoryLibOptDxe:MemLibGuid.obj
+ 0002:00000414       ??_C@_0DI@PHOMHDKH@?$CILength?5?9?51?$CJ?5?$DM?$DN?5?$CI0xFFFFFFFF?5?9?5?$CIU@ 00015414     BaseMemoryLibOptDxe:CopyMemWrapper.obj
+ 0002:0000044c       ??_C@_0DH@PIHDLFLO@q?3?2MdePkg?2Library?2BaseMemoryLibO@ 0001544c     BaseMemoryLibOptDxe:CopyMemWrapper.obj
+ 0002:00000484       ??_C@_0DD@DCDOHCDJ@?$CILength?5?9?51?$CJ?5?$DM?$DN?5?$CI0xFFFFFFFF?5?9?5?$CIU@ 00015484     BaseMemoryLibOptDxe:CopyMemWrapper.obj
+ 0002:000004b8       ??_C@_0CI@MNELLLEK@?$CB?$CIBuffer?5?$DN?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?5?$CG?$CG?5Leng@ 000154b8     BaseMemoryLibOptDxe:ZeroMemWrapper.obj
+ 0002:000004e0       ??_C@_0DH@EMNBNEHJ@q?3?2MdePkg?2Library?2BaseMemoryLibO@ 000154e0     BaseMemoryLibOptDxe:ZeroMemWrapper.obj
+ 0002:00000518       ??_C@_0L@LBCNCHJA@Pages?5?$CB?$DN?50?$AA@ 00015518     UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0002:00000528       ??_C@_0EA@JCDEKIGH@q?3?2MdePkg?2Library?2UefiMemoryAllo@ 00015528     UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0002:00000568       ??_C@_0CD@GECBLADO@?$CIAlignment?5?$CG?5?$CIAlignment?5?9?51?$CJ?$CJ?5?$DN?$DN@ 00015568     UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0002:0000058c       ??_C@_0BC@BDMGDFME@RealPages?5?$DO?5Pages?$AA@ 0001558c     UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0002:000005a0       ??_C@_0DE@FCAJAHCJ@AllocationSize?5?$DM?$DN?5?$CI0xFFFFFFFF?5?9?5@ 000155a0     UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0002:000005d4       ??_C@_0BN@COECPDCC@gImageHandle?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 000155d4     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0002:000005f8       ??_C@_0EG@IHBEIGJL@q?3?2MdePkg?2Library?2UefiBootServic@ 000155f8     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0002:00000640       ??_C@_0BE@DGNHAHIL@gST?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015640     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0002:00000654       ??_C@_0BE@BDFJLGLN@gBS?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015654     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0002:00000668       ??_C@_0BE@OBDFIHND@gRT?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015668     UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
+ 0002:00000680       ??_C@_0EM@DLKNJEFG@q?3?2MdePkg?2Library?2UefiRuntimeSer@ 00015680     UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
+ 0002:000006d0       ??_C@_0EK@PAKOFLDC@q?3?2MdePkg?2Library?2UefiDevicePath@ 000156d0     UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0002:0000071c       ??_C@_0DC@CNNBPJA@mDevicePathLibDevicePathUtilitie@ 0001571c     UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0002:00000750       ??_C@_0BF@CBLMFKOC@Node?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015750     UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+ 0002:00000768       ??_C@_0CE@KFLJGPMN@q?3?2MdePkg?2Library?2UefiLib?2UefiLi@ 00015768     UefiLib:UefiLib.obj
+ 0002:0000078c       ??_C@_0BN@HHGHCLME@ProtocolGuid?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0001578c     UefiLib:UefiLib.obj
+ 0002:000007ac       ??_C@_0CM@BJEOHNPB@q?3?2MdePkg?2Library?2UefiLib?2UefiDr@ 000157ac     UefiLib:UefiDriverModel.obj
+ 0002:000007d8       ??_C@_0CF@EEAPHGAM@q?3?2MdePkg?2Library?2DxeHobLib?2HobL@ 000157d8     DxeHobLib:HobLib.obj
+ 0002:00000800       ??_C@_0BJ@OBFMLLDO@mHobList?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015800     DxeHobLib:HobLib.obj
+ 0002:0000081c       ??_C@_0BJ@NOLLDKJB@HobStart?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0001581c     DxeHobLib:HobLib.obj
+ 0002:00000838       ??_C@_1BC@DPOIABCP@?$AAE?$AAF?$AAI?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$AA@ 00015838     DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0002:0000084c       ??_C@_0CA@KJIFJMH@SenseDataLength?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0001584c     UefiScsiLib:UefiScsiLib.obj
+ 0002:0000086c       ??_C@_0CM@NFBDBHPA@q?3?2MdePkg?2Library?2UefiScsiLib?2Ue@ 0001586c     UefiScsiLib:UefiScsiLib.obj
+ 0002:00000898       ??_C@_0CC@FKDINHOE@HostAdapterStatus?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50@ 00015898     UefiScsiLib:UefiScsiLib.obj
+ 0002:000008bc       ??_C@_0BN@CLPKLLHA@TargetStatus?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 000158bc     UefiScsiLib:UefiScsiLib.obj
+ 0002:000008dc       ??_C@_0BH@OIBIAGDO@ScsiIo?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 000158dc     UefiScsiLib:UefiScsiLib.obj
+ 0002:000008f4       ??_C@_0CC@FGDCNIBA@InquiryDataLength?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50@ 000158f4     UefiScsiLib:UefiScsiLib.obj
+ 0002:00000918       ??_C@_0BL@CDJBPBN@DataLength?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015918     UefiScsiLib:UefiScsiLib.obj
+ 0002:00000938       ??_C@_0EF@PCDGLKLI@q?3?2MdeModulePkg?2Library?2DxeRepor@ 00015938     DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0002:00000980       ??_C@_0DN@HHIHPHHB@?$CB?$CI?$CIExtendedData?5?$DN?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$CJ@ 00015980     DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0002:000009c0       ??_C@_0DN@BBBIFINB@?$CB?$CI?$CIExtendedData?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$CJ@ 000159c0     DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0002:00000a00       ??_C@_0DI@MIEIGAOH@Status?5code?5extended?5data?5is?5too@ 00015a00     DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0002:00000a38       ??_C@_0CD@BDCLIGHD@?$CI?$CIUINTN?$CJ?5String?5?$CG?50x00000001?$CJ?5?$DN?$DN@ 00015a38     BaseLib:SafeString.obj
+ 0002:00000a5c       ??_C@_0CH@OOIJJKEI@q?3?2MdePkg?2Library?2BaseLib?2SafeSt@ 00015a5c     BaseLib:SafeString.obj
+ 0002:00000a84       ??_C@_0BO@ECNIOIHG@?$CIDestination?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$CJ?$AA@ 00015a84     BaseLib:SafeString.obj
+ 0002:00000aa4       ??_C@_0BJ@EAEEJIP@?$CISource?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$CJ?$AA@ 00015aa4     BaseLib:SafeString.obj
+ 0002:00000ac0       ??_C@_0BG@EEGIIOKH@?$CIDestMax?5?$DO?5SourceLen?$CJ?$AA@ 00015ac0     BaseLib:SafeString.obj
+ 0002:00000ad8       ??_C@_0FL@CDANCHFO@InternalSafeStringNoAsciiStrOver@ 00015ad8     BaseLib:SafeString.obj
+ 0002:00000b34       ??_C@_0CD@OOJADBME@q?3?2MdePkg?2Library?2BaseLib?2String@ 00015b34     BaseLib:String.obj
+ 0002:00000b58       ??_C@_0BH@MAAHKCPC@String?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 00015b58     BaseLib:String.obj
+ 0002:00000b70       ??_C@_0DK@EOJCOAME@Length?5?$DM?5_gPcd_FixedAtBuild_PcdM@ 00015b70     BaseLib:String.obj
+ 0002:00000bac       ??_C@_0DJ@JJHGIFMP@Length?5?$DM?$DN?5_gPcd_FixedAtBuild_Pcd@ 00015bac     BaseLib:String.obj
+ 0002:00000be8       ??_C@_0DI@MDIKFADO@Length?5?$DM?5_gPcd_FixedAtBuild_PcdM@ 00015be8     BaseLib:String.obj
+ 0002:00000c20       ??_C@_0BL@IKFBNFIL@AsciiStrSize?5?$CIFirstString?$CJ?$AA@ 00015c20     BaseLib:String.obj
+ 0002:00000c3c       ??_C@_0BM@EDNOKLLE@AsciiStrSize?5?$CISecondString?$CJ?$AA@ 00015c3c     BaseLib:String.obj
+ 0002:00000c58       ??_C@_0CG@MHAECJIA@q?3?2MdePkg?2Library?2BaseLib?2Unalig@ 00015c58     BaseLib:Unaligned.obj
+ 0003:00000000       _gEfiCallerIdGuid          00016000     ScsiDisk:AutoGen.obj
+ 0003:00000010       _gEfiDiskInfoScsiInterfaceGuid 00016010     ScsiDisk:AutoGen.obj
+ 0003:00000020       _gEfiDiskInfoIdeInterfaceGuid 00016020     ScsiDisk:AutoGen.obj
+ 0003:00000030       _gEfiDiskInfoAhciInterfaceGuid 00016030     ScsiDisk:AutoGen.obj
+ 0003:00000040       _gEfiDiskInfoUfsInterfaceGuid 00016040     ScsiDisk:AutoGen.obj
+ 0003:00000050       _gEfiStatusCodeSpecificDataGuid 00016050     ScsiDisk:AutoGen.obj
+ 0003:00000060       _gEfiStatusCodeDataTypeDebugGuid 00016060     ScsiDisk:AutoGen.obj
+ 0003:00000070       _gEfiHobListGuid           00016070     ScsiDisk:AutoGen.obj
+ 0003:00000080       _gEfiGenericVariableGuid   00016080     ScsiDisk:AutoGen.obj
+ 0003:00000090       _gEfiDiskInfoProtocolGuid  00016090     ScsiDisk:AutoGen.obj
+ 0003:000000a0       _gEfiBlockIoProtocolGuid   000160a0     ScsiDisk:AutoGen.obj
+ 0003:000000b0       _gEfiScsiIoProtocolGuid    000160b0     ScsiDisk:AutoGen.obj
+ 0003:000000c0       _gEfiScsiPassThruProtocolGuid 000160c0     ScsiDisk:AutoGen.obj
+ 0003:000000d0       _gEfiExtScsiPassThruProtocolGuid 000160d0     ScsiDisk:AutoGen.obj
+ 0003:000000e0       _gEfiStatusCodeRuntimeProtocolGuid 000160e0     ScsiDisk:AutoGen.obj
+ 0003:000000f0       _gEfiDevicePathProtocolGuid 000160f0     ScsiDisk:AutoGen.obj
+ 0003:00000100       _gEfiDevicePathUtilitiesProtocolGuid 00016100     ScsiDisk:AutoGen.obj
+ 0003:00000110       _gEfiDriverBindingProtocolGuid 00016110     ScsiDisk:AutoGen.obj
+ 0003:00000120       _gEfiComponentNameProtocolGuid 00016120     ScsiDisk:AutoGen.obj
+ 0003:00000130       _gEfiComponentName2ProtocolGuid 00016130     ScsiDisk:AutoGen.obj
+ 0003:00000140       _gEfiDebugMaskProtocolGuid 00016140     ScsiDisk:AutoGen.obj
+ 0003:00000150       _mDebugMaskProtocol        00016150     DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0003:00000160       _gScsiDiskDriverBinding    00016160     ScsiDisk:ScsiDisk.obj
+ 0003:00000178       _gScsiDiskInfoProtocolTemplate 00016178     ScsiDisk:ScsiDisk.obj
+ 0003:00000198       _gScsiDiskComponentName    00016198     ScsiDisk:ComponentName.obj
+ 0003:000001a4       _gScsiDiskComponentName2   000161a4     ScsiDisk:ComponentName.obj
+ 0003:000001b0       _mScsiDiskDriverNameTable  000161b0     ScsiDisk:ComponentName.obj
+ 0003:000001c0       _gImageHandle              000161c0     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0003:000001c4       _gST                       000161c4     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0003:000001c8       _gBS                       000161c8     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
+ 0003:000001cc       _gRT                       000161cc     UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
+ 0003:000001d0       _mHobList                  000161d0     DxeHobLib:HobLib.obj
+ 0003:000001d4       _mGlobalErrorLevelInitialized 000161d4     DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0003:000001d8       _mDebugPrintErrorLevel     000161d8     DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0003:000001dc       _mSystemTable              000161dc     DxeDebugPrintErrorLevelLib:DxeDebugPrintErrorLevelLib.obj
+ 0003:000001e0       _mReportStatusCodeLibStatusCodeProtocol 000161e0     DxeReportStatusCodeLib:ReportStatusCodeLib.obj
+ 0003:000001e4       _mDevicePathLibDevicePathUtilities 000161e4     UefiDevicePathLibDevicePathProtocol:UefiDevicePathLib.obj
+
+ entry point at        0001:00000000
+
+ Static symbols
+

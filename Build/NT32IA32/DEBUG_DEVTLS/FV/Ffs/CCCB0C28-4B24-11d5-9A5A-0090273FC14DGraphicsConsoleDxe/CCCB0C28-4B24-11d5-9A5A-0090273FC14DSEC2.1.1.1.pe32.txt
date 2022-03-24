@@ -1,0 +1,1 @@
+GenSec -s EFI_SECTION_PE32 -o q:\Build\NT32IA32\DEBUG_DEVTLS\FV\Ffs\CCCB0C28-4B24-11d5-9A5A-0090273FC14DGraphicsConsoleDxe\CCCB0C28-4B24-11d5-9A5A-0090273FC14DSEC2.1.1.1.pe32 q:\Build\NT32IA32\DEBUG_DEVTLS\IA32\MdeModulePkg\Universal\Console\GraphicsConsoleDxe\GraphicsConsoleDxe\OUTPUT\GraphicsConsoleDxe.efi

@@ -1,0 +1,6 @@
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib/OUTPUT/Ia32/InterlockedCompareExchange64.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib/OUTPUT/Ia32/InterlockedCompareExchange32.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib/OUTPUT/Ia32/InterlockedCompareExchange16.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib/OUTPUT/Ia32/InterlockedDecrement.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib/OUTPUT/Ia32/InterlockedIncrement.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib/OUTPUT/SynchronizationMsc.obj

@@ -1,0 +1,1 @@
+GenSec -s EFI_SECTION_PE32 -o q:\Build\NT32IA32\DEBUG_DEVTLS\FV\Ffs\FE5CEA76-4F72-49e8-986F-2CD899DFFE5DFaultTolerantWriteDxe\FE5CEA76-4F72-49e8-986F-2CD899DFFE5DSEC2.1.1.1.pe32 q:\Build\NT32IA32\DEBUG_DEVTLS\IA32\MdeModulePkg\Universal\FaultTolerantWriteDxe\FaultTolerantWriteDxe\OUTPUT\FaultTolerantWriteDxe.efi

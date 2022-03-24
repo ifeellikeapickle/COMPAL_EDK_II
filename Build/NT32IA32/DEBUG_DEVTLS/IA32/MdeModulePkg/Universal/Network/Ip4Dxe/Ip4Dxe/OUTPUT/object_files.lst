@@ -1,0 +1,15 @@
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Driver.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4If.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Output.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Icmp.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Igmp.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Impl.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Common.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Option.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/ComponentName.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Route.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Input.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Config2Impl.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Config2.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/Ip4Config2Nv.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Ip4Dxe/Ip4Dxe/OUTPUT/AutoGen.obj

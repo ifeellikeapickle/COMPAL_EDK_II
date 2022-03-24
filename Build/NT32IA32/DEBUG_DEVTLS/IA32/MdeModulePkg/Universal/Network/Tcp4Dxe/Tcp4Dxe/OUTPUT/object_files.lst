@@ -1,0 +1,13 @@
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/SockImpl.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/SockInterface.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Output.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Timer.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Dispatcher.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Input.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Misc.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Main.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/ComponentName.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Io.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Driver.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/Tcp4Option.obj
+q:/Build/NT32IA32/DEBUG_DEVTLS/IA32/MdeModulePkg/Universal/Network/Tcp4Dxe/Tcp4Dxe/OUTPUT/AutoGen.obj

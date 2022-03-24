@@ -1,0 +1,1 @@
+GenSec -s EFI_SECTION_PE32 -o q:\Build\NT32IA32\DEBUG_DEVTLS\FV\Ffs\EBF8ED7C-0DD1-4787-84F1-F48D537DCACFDriverHealthManagerDxe\EBF8ED7C-0DD1-4787-84F1-F48D537DCACFSEC2.1.1.1.pe32 q:\Build\NT32IA32\DEBUG_DEVTLS\IA32\MdeModulePkg\Universal\DriverHealthManagerDxe\DriverHealthManagerDxe\OUTPUT\DriverHealthManagerDxe.efi

@@ -1,0 +1,830 @@
+//
+//  VFR compiler version  2.00 (UEFI 2.4) Build 18337
+//
+#line 1 "q:\\MdeModulePkg\\Application\\UiApp\\FrontPageVfr.Vfr"
+#line 1 "q:\\Build\\NT32IA32\\DEBUG_DEVTLS\\IA32\\MdeModulePkg\\Application\\UiApp\\UiApp\\DEBUG\\UiAppStrDefs.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern unsigned char UiAppStrings[];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 238 "q:\\Build\\NT32IA32\\DEBUG_DEVTLS\\IA32\\MdeModulePkg\\Application\\UiApp\\UiApp\\DEBUG\\UiAppStrDefs.h"
+
+#line 240 "q:\\Build\\NT32IA32\\DEBUG_DEVTLS\\IA32\\MdeModulePkg\\Application\\UiApp\\UiApp\\DEBUG\\UiAppStrDefs.h"
+#line 1 "q:\\MdeModulePkg\\Application\\UiApp\\FrontPageVfr.Vfr"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "q:\\mdemodulepkg\\application\\uiapp\\FormsetGuid.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "q:\\mdemodulepkg\\application\\uiapp\\BootMaint/FormGuid.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef struct {
+  
+  
+  
+  
+  UINT16  BootTimeOut;
+  UINT16  BootNext;
+
+  
+  
+  
+  UINT8   COM1BaudRate;
+  UINT8   COM1DataRate;
+  UINT8   COM1StopBits;
+  UINT8   COM1Parity;
+  UINT8   COM1TerminalType;
+
+  
+  
+  
+  UINT8   COM2BaudRate;
+  UINT8   COM2DataRate;
+  UINT8   COM2StopBits;
+  UINT8   COM2Parity;
+  UINT8   COM2TerminalType;
+
+  
+  
+  
+  UINT16  DriverAddHandleDesc[100];
+  UINT16  DriverAddHandleOptionalData[100];
+  UINT8   DriverAddActive;
+  UINT8   DriverAddForceReconnect;
+
+  
+  
+  
+  UINT8   ConsoleInputCOM1;
+  UINT8   ConsoleInputCOM2;
+  UINT8   ConsoleOutputCOM1;
+  UINT8   ConsoleOutputCOM2;
+  UINT8   ConsoleErrorCOM1;
+  UINT8   ConsoleErrorCOM2;
+
+  
+  
+  
+  UINT8   ConsoleCheck[100];
+  
+  
+  
+  
+  UINT8   ConsoleInCheck[100];
+  UINT8   ConsoleOutCheck[100];
+  UINT8   ConsoleErrCheck[100];
+
+  
+  
+  
+  
+  
+  UINT32  BootOptionOrder[100];
+  UINT32  DriverOptionOrder[100];
+  
+  
+  
+  BOOLEAN BootOptionDel[100];
+  BOOLEAN DriverOptionDel[100];
+  BOOLEAN BootOptionDelMark[100];
+  BOOLEAN DriverOptionDelMark[100];
+
+  
+  
+  
+  UINT8   COMBaudRate[100];
+  UINT8   COMDataRate[100];
+  UINT8   COMStopBits[100];
+  UINT8   COMParity[100];
+  UINT8   COMTerminalType[100];
+  UINT8   COMFlowControl[100];
+
+  
+  
+  
+  
+  
+  
+  UINT8   DisableMap[32];
+
+  
+  
+  
+  UINT16  ConsoleOutMode;
+
+  
+  
+  
+} BMM_FAKE_NV_DATA;
+
+
+
+
+
+
+
+
+
+
+
+
+typedef struct {
+  UINT16  BootDescriptionData[100];
+  UINT16  BootOptionalData[127];
+  UINT16  DriverDescriptionData[100];
+  UINT16  DriverOptionalData[127];
+  BOOLEAN BootOptionChanged;
+  BOOLEAN DriverOptionChanged;
+  UINT8   Active;
+  UINT8   ForceReconnect;
+} FILE_EXPLORER_NV_DATA;
+
+#line 223 "q:\\mdemodulepkg\\application\\uiapp\\BootMaint/FormGuid.h"
+
+#line 21 "q:\\mdemodulepkg\\application\\uiapp\\FormsetGuid.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 52 "q:\\mdemodulepkg\\application\\uiapp\\FormsetGuid.h"
+#line 18 "q:\\MdeModulePkg\\Application\\UiApp\\FrontPageVfr.Vfr"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+formset
+>00000000: 0E A7 BC 30 0C 9E 06 3F A6 4B 82 88 09 17 9B 85 5D BE 7B 00 02 00 01 BC 30 0C 9E 06 3F A6 4B 82 88 09 17 9B 85 5D BE 
+>00000027: 5C 06 00 00 00 00 
+>0000002D: 5C 06 00 00 01 00 
+  guid     = { 0x9e0c30bc, 0x3f06, 0x4ba6, 0x82, 0x88, 0x9, 0x17, 0x9b, 0x85, 0x5d, 0xbe },
+  title    = STRING_TOKEN(0x007B),
+  help     = STRING_TOKEN(0x0002),
+  classguid = { 0x9e0c30bc, 0x3f06, 0x4ba6, 0x82, 0x88, 0x9, 0x17, 0x9b, 0x85, 0x5d, 0xbe },
+
+  form formid = 0x1000,
+>00000033: 01 86 00 10 7B 00 
+       title  = STRING_TOKEN(0x007B);
+
+    banner
+>00000039: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7C 00 01 00 00 
+      title = STRING_TOKEN(0x007C),
+      line  1,
+      align left;
+
+    banner
+>00000051: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7D 00 02 00 00 
+      title = STRING_TOKEN(0x007D),
+      line  2,
+      align left;
+
+    banner
+>00000069: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7E 00 02 00 02 
+      title = STRING_TOKEN(0x007E),
+      line  2,
+      align right;
+
+    banner
+>00000081: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 80 00 03 00 00 
+      title = STRING_TOKEN(0x0080),
+      line  3,
+      align left;
+
+    banner
+>00000099: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7F 00 03 00 02 
+      title = STRING_TOKEN(0x007F),
+      line  3,
+      align right;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    text
+      help    = STRING_TOKEN(0x0088),
+      text    = STRING_TOKEN(0x0087),
+      flags   = INTERACTIVE,
+>000000B1: 0C 8F 87 00 88 00 00 10 00 00 FF FF 04 00 00 
+      key     = 0x1000;
+>000000C0: 29 02 
+
+    label 0x1000;
+>000000C2: 5F 15 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 00 00 10 
+    
+    
+    
+    
+    label 0xffff;
+>000000D7: 5F 15 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 00 FF FF 
+          
+    goto 
+>000000EC: 0F 21 8F 00 90 00 67 85 00 00 FF FF 04 00 00 00 00 E6 A8 BF 3E 1D 51 5B 4B A9 5F FB 38 26 0F 1C 27 
+      formsetguid = { 0x3ebfa8e6, 0x511d, 0x4b5b, 0xa9, 0x5f, 0xfb, 0x38, 0x26, 0xf, 0x1c, 0x27 },
+      formid      = 0,
+      question    = 0,
+      prompt  = STRING_TOKEN(0x008F),
+      help    = STRING_TOKEN(0x0090),
+      flags   = INTERACTIVE,
+      key     = 0x8567;
+
+               
+    goto 
+>0000010D: 0F 21 8B 00 8C 00 64 10 00 00 FF FF 04 00 00 00 00 FE C3 7B 84 74 B9 6D 44 94 49 5A D5 41 2E 99 3B 
+      formsetguid = { 0x847bc3fe, 0xb974, 0x446d, 0x94, 0x49, 0x5a, 0xd5, 0x41, 0x2e, 0x99, 0x3b }  ,
+      formid      = 0,
+      question    = 0,
+      prompt      = STRING_TOKEN(0x008B),
+      help        = STRING_TOKEN(0x008C),
+      flags       = INTERACTIVE,
+      key         = 0x1064;
+
+
+    goto
+>0000012E: 0F 21 8D 00 8E 00 76 98 00 00 FF FF 04 00 00 00 00 C7 37 22 64 D4 35 2D 47 83 65 12 E0 CC F2 7A 22 
+      formsetguid = { 0x642237c7, 0x35d4, 0x472d, {0x83, 0x65, 0x12, 0xe0, 0xcc, 0xf2, 0x7a, 0x22} },
+      formid      = 0,
+      question    = 0,
+      prompt  = STRING_TOKEN(0x008D),
+      help    = STRING_TOKEN(0x008E),
+      flags   = INTERACTIVE,
+      key     = 0x9876;
+
+  endform;
+>0000014F: 29 02 
+
+endformset;
+>00000151: 29 02 
+
+//
+// All Opcode Record List 
+//
+>00000000: 0E A7 BC 30 0C 9E 06 3F A6 4B 82 88 09 17 9B 85 5D BE 7B 00 02 00 01 BC 30 0C 9E 06 3F A6 4B 82 88 09 17 9B 85 5D BE 
+>00000027: 5C 06 00 00 00 00 
+>0000002D: 5C 06 00 00 01 00 
+>00000033: 01 86 00 10 7B 00 
+>00000039: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7C 00 01 00 00 
+>00000051: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7D 00 02 00 00 
+>00000069: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7E 00 02 00 02 
+>00000081: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 80 00 03 00 00 
+>00000099: 5F 18 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 01 7F 00 03 00 02 
+>000000B1: 0C 8F 87 00 88 00 00 10 00 00 FF FF 04 00 00 
+>000000C0: 29 02 
+>000000C2: 5F 15 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 00 00 10 
+>000000D7: 5F 15 35 17 0B 0F A0 87 93 41 B2 66 53 8C 38 AF 48 CE 00 FF FF 
+>000000EC: 0F 21 8F 00 90 00 67 85 00 00 FF FF 04 00 00 00 00 E6 A8 BF 3E 1D 51 5B 4B A9 5F FB 38 26 0F 1C 27 
+>0000010D: 0F 21 8B 00 8C 00 64 10 00 00 FF FF 04 00 00 00 00 FE C3 7B 84 74 B9 6D 44 94 49 5A D5 41 2E 99 3B 
+>0000012E: 0F 21 8D 00 8E 00 76 98 00 00 FF FF 04 00 00 00 00 C7 37 22 64 D4 35 2D 47 83 65 12 E0 CC F2 7A 22 
+>0000014F: 29 02 
+>00000151: 29 02 
+
+Total Size of all record is 0x00000153
+
+
+***************************************************************
+		mPackAlign = 8
+		struct FILE_EXPLORER_NV_DATA : mAlign [2] mTotalSize [0x390]
+
+		struct FILE_EXPLORER_NV_DATA {
+			+00000000[00000000] BootDescriptionData[100] <UINT16>
+			+00000200[000000c8] BootOptionalData[127] <UINT16>
+			+00000454[000001c6] DriverDescriptionData[100] <UINT16>
+			+00000654[0000028e] DriverOptionalData[127] <UINT16>
+			+00000908[0000038c] BootOptionChanged <BOOLEAN>
+			+00000909[0000038d] DriverOptionChanged <BOOLEAN>
+			+00000910[0000038e] Active <UINT8>
+			+00000911[0000038f] ForceReconnect <UINT8>
+		};
+---------------------------------------------------------------
+		struct BMM_FAKE_NV_DATA : mAlign [4] mTotalSize [0xa64]
+
+		struct BMM_FAKE_NV_DATA {
+			+00000000[00000000] BootTimeOut <UINT16>
+			+00000002[00000002] BootNext <UINT16>
+			+00000004[00000004] COM1BaudRate <UINT8>
+			+00000005[00000005] COM1DataRate <UINT8>
+			+00000006[00000006] COM1StopBits <UINT8>
+			+00000007[00000007] COM1Parity <UINT8>
+			+00000008[00000008] COM1TerminalType <UINT8>
+			+00000009[00000009] COM2BaudRate <UINT8>
+			+00000010[0000000a] COM2DataRate <UINT8>
+			+00000011[0000000b] COM2StopBits <UINT8>
+			+00000012[0000000c] COM2Parity <UINT8>
+			+00000013[0000000d] COM2TerminalType <UINT8>
+			+00000014[0000000e] DriverAddHandleDesc[100] <UINT16>
+			+00000214[000000d6] DriverAddHandleOptionalData[100] <UINT16>
+			+00000414[0000019e] DriverAddActive <UINT8>
+			+00000415[0000019f] DriverAddForceReconnect <UINT8>
+			+00000416[000001a0] ConsoleInputCOM1 <UINT8>
+			+00000417[000001a1] ConsoleInputCOM2 <UINT8>
+			+00000418[000001a2] ConsoleOutputCOM1 <UINT8>
+			+00000419[000001a3] ConsoleOutputCOM2 <UINT8>
+			+00000420[000001a4] ConsoleErrorCOM1 <UINT8>
+			+00000421[000001a5] ConsoleErrorCOM2 <UINT8>
+			+00000422[000001a6] ConsoleCheck[100] <UINT8>
+			+00000522[0000020a] ConsoleInCheck[100] <UINT8>
+			+00000622[0000026e] ConsoleOutCheck[100] <UINT8>
+			+00000722[000002d2] ConsoleErrCheck[100] <UINT8>
+			+00000824[00000338] BootOptionOrder[100] <UINT32>
+			+00001224[000004c8] DriverOptionOrder[100] <UINT32>
+			+00001624[00000658] BootOptionDel[100] <BOOLEAN>
+			+00001724[000006bc] DriverOptionDel[100] <BOOLEAN>
+			+00001824[00000720] BootOptionDelMark[100] <BOOLEAN>
+			+00001924[00000784] DriverOptionDelMark[100] <BOOLEAN>
+			+00002024[000007e8] COMBaudRate[100] <UINT8>
+			+00002124[0000084c] COMDataRate[100] <UINT8>
+			+00002224[000008b0] COMStopBits[100] <UINT8>
+			+00002324[00000914] COMParity[100] <UINT8>
+			+00002424[00000978] COMTerminalType[100] <UINT8>
+			+00002524[000009dc] COMFlowControl[100] <UINT8>
+			+00002624[00000a40] DisableMap[32] <UINT8>
+			+00002656[00000a60] ConsoleOutMode <UINT16>
+		};
+---------------------------------------------------------------
+		struct EFI_HII_REF : mAlign [16] mTotalSize [0x16]
+
+		struct EFI_HII_REF {
+			+00000000[00000000] QuestionId <UINT16>
+			+00000002[00000002] FormId <UINT16>
+			+00000004[00000004] FormSetGuid <(null)>
+			+00000020[00000014] DevicePath <EFI_STRING_ID>
+		};
+---------------------------------------------------------------
+		struct EFI_HII_TIME : mAlign [1] mTotalSize [0x3]
+
+		struct EFI_HII_TIME {
+			+00000000[00000000] Hours <UINT8>
+			+00000001[00000001] Minutes <UINT8>
+			+00000002[00000002] Seconds <UINT8>
+		};
+---------------------------------------------------------------
+		struct EFI_STRING_ID : mAlign [2] mTotalSize [0x2]
+
+		struct EFI_STRING_ID {
+		};
+---------------------------------------------------------------
+		struct EFI_HII_DATE : mAlign [2] mTotalSize [0x4]
+
+		struct EFI_HII_DATE {
+			+00000000[00000000] Year <UINT16>
+			+00000002[00000002] Month <UINT8>
+			+00000003[00000003] Day <UINT8>
+		};
+---------------------------------------------------------------
+		struct BOOLEAN : mAlign [1] mTotalSize [0x1]
+
+		struct BOOLEAN {
+		};
+---------------------------------------------------------------
+		struct UINT8 : mAlign [1] mTotalSize [0x1]
+
+		struct UINT8 {
+		};
+---------------------------------------------------------------
+		struct UINT16 : mAlign [2] mTotalSize [0x2]
+
+		struct UINT16 {
+		};
+---------------------------------------------------------------
+		struct UINT32 : mAlign [4] mTotalSize [0x4]
+
+		struct UINT32 {
+		};
+---------------------------------------------------------------
+		struct UINT64 : mAlign [8] mTotalSize [0x8]
+
+		struct UINT64 {
+		};
+---------------------------------------------------------------
+***************************************************************
