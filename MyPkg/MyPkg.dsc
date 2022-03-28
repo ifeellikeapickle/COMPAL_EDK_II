@@ -118,7 +118,7 @@
   #MyPkg/Application/PCIRW/PCIRW.inf
   #MyPkg/Application/CPUID/CPUID.inf
   #MyPkg/Application/MSRRead/MSRRead.inf
-  MyPkg/Application/SMBIOS/SMBIOS.inf
+  #MyPkg/Application/SMBIOS/SMBIOS.inf
   #MyPkg/Application/SMBIOS/SMBIOS_reg.inf
   #MyPkg/Application/SPDRead/SPDRead.inf
   #MyPkg/Application/RTC/RTC.inf
