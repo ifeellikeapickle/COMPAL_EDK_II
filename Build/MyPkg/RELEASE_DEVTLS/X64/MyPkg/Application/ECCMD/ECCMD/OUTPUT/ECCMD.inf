@@ -110,16 +110,17 @@
 #  MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
 #  MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
 #  MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+#  MyPkg/Library/ECCommandLib/ECCommandLib.inf
+#  MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
+#  MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
 #  MdePkg/Library/BaseLib/BaseLib.inf
+#  MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
 #  MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
 #  MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
 #  MdePkg/Library/BasePrintLib/BasePrintLib.inf
 #  MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
 #  MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-#  MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
 #  MdePkg/Library/UefiLib/UefiLib.inf
-#  MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
-#  MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
 
 [Depex.X64]
 

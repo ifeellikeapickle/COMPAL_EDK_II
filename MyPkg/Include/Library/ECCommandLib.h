@@ -55,4 +55,10 @@ PrintEcEeprom (
     IN  UINT8   Bank
 );
 
+EFI_STATUS
+GetInputParameters (
+    IN  EFI_HANDLE        ImageHandle,
+    IN  EFI_SYSTEM_TABLE  *SystemTable
+);
+
 #endif

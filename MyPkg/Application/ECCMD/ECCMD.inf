@@ -16,6 +16,7 @@
    ECCMD.c
 
 [Packages]
+  MyPkg/MyPkg.dec
   MdePkg/MdePkg.dec
   ShellPkg/ShellPkg.dec
 
@@ -25,6 +26,8 @@
   UefiLib
   IoLib
   TimerLib
+
+  ECCommandLib
   
 [Protocols]
 [FeaturePcd]

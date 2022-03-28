@@ -1,3 +1,19 @@
+#include <Uefi.h>
+#include <Base.h>
+
+#include <Library/BaseLib.h>
+#include <Library/UefiLib.h>
+#include <Library/IoLib.h>
+
+#include <Library/UefiBootServicesTableLib.h>
+#include <Library/ShellLib.h>
+#include <Protocol/LoadedImage.h>
+#include <Protocol/EfiShellParameters.h>
+
+#include <Library/TimerLib.h>
+
+#include <Library/ECCommandLib.h>
+
 VOID
 WaitForIbf (
     IN  UINT8   CommandPort

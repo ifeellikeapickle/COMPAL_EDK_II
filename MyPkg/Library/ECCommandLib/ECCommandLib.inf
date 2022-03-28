@@ -20,16 +20,10 @@
   ShellPkg/ShellPkg.dec
 
 [LibraryClasses]
-
-  #MyPkg
   ECCommandLib
-
-  #MdePkg
+  
   UefiApplicationEntryPoint
   BaseLib
   UefiLib
   IoLib
   TimerLib
-
-  #ShellPkg
-  ShellLib
