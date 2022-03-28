@@ -45,7 +45,9 @@ IsObfFull (
 }
 
 VOID
-PrintIbfObf (VOID)
+PrintIbfObf (
+    VOID
+)
 {
     UINT8   Ibf;
     UINT8   Obf;
@@ -56,7 +58,9 @@ PrintIbfObf (VOID)
 }
 
 VOID
-PrintCompanyIdByCompal (VOID)
+PrintCompanyIdByCompal (
+    VOID
+)
 {
     UINT8   CompanyId[10];
     UINT8   CompanyIdLetter;
@@ -84,7 +88,9 @@ PrintCompanyIdByCompal (VOID)
 // This port(method) has conflict with the keyboard input!!
 //
 VOID
-PrintProjectNameByKbc (VOID)
+PrintProjectNameByKbc (
+    VOID
+)
 {
     UINT8   ProjectName[10];
     UINT8   ProjectNameLetter;
@@ -111,7 +117,9 @@ PrintProjectNameByKbc (VOID)
 }
 
 VOID
-PrintProjectNameByAcpi (VOID)
+PrintProjectNameByAcpi (
+    VOID
+)
 {
     UINT8   ProjectName[10];
     UINT8   ProjectNameLetter;
@@ -138,7 +146,9 @@ PrintProjectNameByAcpi (VOID)
 }
 
 VOID
-PrintProjectNameByCompal (VOID)
+PrintProjectNameByCompal (
+    VOID
+)
 {
     UINT8   ProjectName[10];
     UINT8   ProjectNameLetter;
