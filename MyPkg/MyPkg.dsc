@@ -65,7 +65,12 @@
   PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
   HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
   ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+  
   TimerLib|MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
+  #
+  # My Libraries
+  #
+  ECCommandLib|MyPkg/Library/ECCommandLib/ECCommandLib.inf
 
 [LibraryClasses.IA32]
   # To run in an emulation environment, such as Nt32Pkg, comment out the TimerLib

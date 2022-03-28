@@ -1,0 +1,35 @@
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = ECCommandLib
+  FILE_GUID                      = 50930571-c85e-462a-ba19-d6218a9df8e0
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ECCommandLib
+
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+   ECCommand.c
+
+[Packages]
+  MyPkg/MyPkg.dec
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+
+[LibraryClasses]
+
+  #MyPkg
+  ECCommandLib
+
+  #MdePkg
+  UefiApplicationEntryPoint
+  BaseLib
+  UefiLib
+  IoLib
+  TimerLib
+
+  #ShellPkg
+  ShellLib

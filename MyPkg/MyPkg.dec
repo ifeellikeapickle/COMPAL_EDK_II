@@ -1,8 +1,13 @@
 [Defines]
-  DEC_SPECIFICATION              = 0x0001001B
-  PACKAGE_NAME                   = MyPkg
-  PACKAGE_GUID                   = 549867eb-059f-44d1-b1e1-13ec2f96c7a9
-  PACKAGE_VERSION                = 0.01
+    DEC_SPECIFICATION              = 0x0001001B
+    PACKAGE_NAME                   = MyPkg
+    PACKAGE_GUID                   = a16beb48-a8d0-4134-9a08-a84f0a51748b
+    PACKAGE_VERSION                = 0.01
 
 [Includes]
-  Include
+    Include
+
+[LibraryClasses]
+    ECCommandLib|Include/Library/ECCommandLib.h
+
+[Guids]
