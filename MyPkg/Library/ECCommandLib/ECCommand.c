@@ -203,6 +203,32 @@ PrintEcEeprom (
     }
 }
 
+VOID
+EcCommand (
+    IN  UINTN       Argc,
+	IN  CHAR16      **Argv
+)
+{
+    UINT8           BankNumber;
+
+    if (Argc == 3 && !StrCmp(Argv[1], L"41") && (!StrCmp(Argv[2], L"A1") || !StrCmp(Argv[2], L"a1"))) {
+        PrintCompanyIdByCompal ();
+    } else if (Argc == 3 && !StrCmp(Argv[1], L"52") && (!StrCmp(Argv[2], L"A0") || !StrCmp(Argv[2], L"a0"))) {
+        PrintProjectNameByCompal ();
+    } else if (Argc == 3 && !StrCmp(Argv[1], L"42")) {
+        BankNumber = (UINT8)StrHexToUintn(Argv[2]);
+        if (BankNumber < 0x00 || BankNumber > 0x06) {
+            Print (L"Please enter Bank Number between 0 and 6.\n");
+        } else {
+            PrintEcEeprom (BankNumber);
+        }
+    } else if (Argc == 1) {
+        Print (L"     [File Name] [Command] [Data]\ne.g.   ECCMD.efi        41     A1\n");
+    } else {
+        Print (L"Command or data are not defined.\n");
+    }
+}
+
 EFI_STATUS
 GetInputParameters (
     IN  EFI_HANDLE        ImageHandle,
@@ -213,8 +239,9 @@ GetInputParameters (
 
     UINTN			Argc;
 	CHAR16			**Argv;
+
     EFI_STATUS      Status;
-    UINT8           BankNumber;
+
     EFI_GUID  mEfiShellParametersProtocolGuid = EFI_SHELL_PARAMETERS_PROTOCOL_GUID;
 
 	gEfiShellParametersProtocol = NULL;
@@ -246,22 +273,7 @@ GetInputParameters (
     // use shell 2.0 interface
     //
 
-   if (Argc == 3 && !StrCmp(Argv[1], L"41") && (!StrCmp(Argv[2], L"A1") || !StrCmp(Argv[2], L"a1"))) {
-       PrintCompanyIdByCompal ();
-   } else if (Argc == 3 && !StrCmp(Argv[1], L"52") && (!StrCmp(Argv[2], L"A0") || !StrCmp(Argv[2], L"a0"))) {
-       PrintProjectNameByCompal ();
-   } else if (Argc == 3 && !StrCmp(Argv[1], L"42")) {
-       BankNumber = (UINT8)StrHexToUintn(Argv[2]);
-       if (BankNumber < 0x00 || BankNumber > 0x06) {
-           Print (L"Please enter Bank Number between 0 and 6.\n");
-       } else {
-           PrintEcEeprom (BankNumber);
-       }
-   } else if (Argc == 1) {
-       Print (L"     [File Name] [Command] [Data]\ne.g.   ECCMD.efi        41     A1\n");
-   } else {
-       Print (L"Command or data are not defined.\n");
-   }
+    EcCommand (Argc, Argv);
    
 	return EFI_SUCCESS;
 }

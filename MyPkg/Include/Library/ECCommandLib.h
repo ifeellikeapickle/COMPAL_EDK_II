@@ -55,6 +55,12 @@ PrintEcEeprom (
     IN  UINT8   Bank
 );
 
+VOID
+EcCommand (
+    IN  UINTN       Argc,
+	IN  CHAR16      **Argv
+);
+
 EFI_STATUS
 GetInputParameters (
     IN  EFI_HANDLE        ImageHandle,

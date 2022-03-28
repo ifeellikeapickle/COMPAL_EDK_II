@@ -1,16 +1,16 @@
  ECCMD
 
- Timestamp is 62417904 (Mon Mar 28 16:59:48 2022)
+ Timestamp is 62417d62 (Mon Mar 28 17:18:26 2022)
 
  Preferred load address is 0000000000000000
 
  Start         Length     Name                   Class
- 0001:00000000 00001c02H .text                   CODE
+ 0001:00000000 00001c12H .text                   CODE
  0002:00000000 00000000H .data                   DATA
  0002:00000000 00000cf7H .rdata                  DATA
  0002:00000cf8 00000020H .bss                    DATA
- 0003:00000000 0000012cH .pdata                  DATA
- 0004:00000000 000000d0H .xdata                  DATA
+ 0003:00000000 00000138H .pdata                  DATA
+ 0004:00000000 000000ccH .xdata                  DATA
 
   Address         Publics by Value              Rva+Base               Lib:Object
 
@@ -23,38 +23,39 @@
  0001:0000025c       UefiMain                   00000000000004fc f   ECCMD:ECCMD.obj
  0001:00000264       DebugPrint                 0000000000000504 f   BaseDebugLibNull:DebugLib.obj
  0001:00000270       DebugPrintEnabled          0000000000000510 f   BaseDebugLibNull:DebugLib.obj
- 0001:00000270       DebugPrintLevelEnabled     0000000000000510 f   BaseDebugLibNull:DebugLib.obj
  0001:00000270       DebugAssertEnabled         0000000000000510 f   BaseDebugLibNull:DebugLib.obj
+ 0001:00000270       DebugPrintLevelEnabled     0000000000000510 f   BaseDebugLibNull:DebugLib.obj
  0001:00000274       PrintCompanyIdByCompal     0000000000000514 f   ECCommandLib:ECCommand.obj
  0001:0000032c       PrintProjectNameByCompal   00000000000005cc f   ECCommandLib:ECCommand.obj
  0001:000003e4       PrintEcEeprom              0000000000000684 f   ECCommandLib:ECCommand.obj
- 0001:000004b0       GetInputParameters         0000000000000750 f   ECCommandLib:ECCommand.obj
- 0001:0000062c       IoRead8                    00000000000008cc f   BaseIoLibIntrinsic:IoLibMsc.obj
- 0001:00000634       IoWrite8                   00000000000008d4 f   BaseIoLibIntrinsic:IoLibMsc.obj
- 0001:0000063c       StrLen                     00000000000008dc f   BaseLib:String.obj
- 0001:000006f4       StrSize                    0000000000000994 f   BaseLib:String.obj
- 0001:00000708       StrCmp                     00000000000009a8 f   BaseLib:String.obj
- 0001:000007b8       InternalHexCharToUintn     0000000000000a58 f   BaseLib:String.obj
- 0001:000007e8       InternalIsHexaDecimalDigitCharacter 0000000000000a88 f   BaseLib:String.obj
- 0001:00000810       StrHexToUintn              0000000000000ab0 f   BaseLib:String.obj
- 0001:000008fc       AsciiStrLen                0000000000000b9c f   BaseLib:String.obj
- 0001:00000984       AsciiStrSize               0000000000000c24 f   BaseLib:String.obj
- 0001:00000998       InternalMathDivRemU64x32   0000000000000c38 f   BaseLib:Math64.obj
- 0001:000009b4       UefiRuntimeServicesTableLibConstructor 0000000000000c54 f   UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
- 0001:000009f8       UefiLibConstructor         0000000000000c98 f   UefiLib:UefiLib.obj
- 0001:000009fc       InternalPrint              0000000000000c9c f   UefiLib:UefiLibPrint.obj
- 0001:00000b1c       Print                      0000000000000dbc f   UefiLib:UefiLibPrint.obj
- 0001:00000b4c       ReadUnaligned16            0000000000000dec f   BaseLib:Unaligned.obj
- 0001:00000b84       ReadUnaligned32            0000000000000e24 f   BaseLib:Unaligned.obj
- 0001:00000bbc       InternalAllocatePool       0000000000000e5c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
- 0001:00000be8       AllocatePool               0000000000000e88 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
- 0001:00000bf8       FreePool                   0000000000000e98 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
- 0001:00000c6c       UnicodeVSPrint             0000000000000f0c f   BasePrintLib:PrintLib.obj
- 0001:00000d10       BasePrintLibFillBuffer     0000000000000fb0 f   BasePrintLib:PrintLibInternal.obj
- 0001:00000d44       BasePrintLibValueToString  0000000000000fe4 f   BasePrintLib:PrintLibInternal.obj
- 0001:00000d94       BasePrintLibSPrintMarker   0000000000001034 f   BasePrintLib:PrintLibInternal.obj
- 0001:00001b88       BasePrintLibSPrint         0000000000001e28 f   BasePrintLib:PrintLibInternal.obj
- 0001:00001bac       DivU64x32Remainder         0000000000001e4c f   BaseLib:DivU64x32Remainder.obj
+ 0001:000004b0       EcCommand                  0000000000000750 f   ECCommandLib:ECCommand.obj
+ 0001:000005ac       GetInputParameters         000000000000084c f   ECCommandLib:ECCommand.obj
+ 0001:0000063c       IoRead8                    00000000000008dc f   BaseIoLibIntrinsic:IoLibMsc.obj
+ 0001:00000644       IoWrite8                   00000000000008e4 f   BaseIoLibIntrinsic:IoLibMsc.obj
+ 0001:0000064c       StrLen                     00000000000008ec f   BaseLib:String.obj
+ 0001:00000704       StrSize                    00000000000009a4 f   BaseLib:String.obj
+ 0001:00000718       StrCmp                     00000000000009b8 f   BaseLib:String.obj
+ 0001:000007c8       InternalHexCharToUintn     0000000000000a68 f   BaseLib:String.obj
+ 0001:000007f8       InternalIsHexaDecimalDigitCharacter 0000000000000a98 f   BaseLib:String.obj
+ 0001:00000820       StrHexToUintn              0000000000000ac0 f   BaseLib:String.obj
+ 0001:0000090c       AsciiStrLen                0000000000000bac f   BaseLib:String.obj
+ 0001:00000994       AsciiStrSize               0000000000000c34 f   BaseLib:String.obj
+ 0001:000009a8       InternalMathDivRemU64x32   0000000000000c48 f   BaseLib:Math64.obj
+ 0001:000009c4       UefiRuntimeServicesTableLibConstructor 0000000000000c64 f   UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
+ 0001:00000a08       UefiLibConstructor         0000000000000ca8 f   UefiLib:UefiLib.obj
+ 0001:00000a0c       InternalPrint              0000000000000cac f   UefiLib:UefiLibPrint.obj
+ 0001:00000b2c       Print                      0000000000000dcc f   UefiLib:UefiLibPrint.obj
+ 0001:00000b5c       ReadUnaligned16            0000000000000dfc f   BaseLib:Unaligned.obj
+ 0001:00000b94       ReadUnaligned32            0000000000000e34 f   BaseLib:Unaligned.obj
+ 0001:00000bcc       InternalAllocatePool       0000000000000e6c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00000bf8       AllocatePool               0000000000000e98 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00000c08       FreePool                   0000000000000ea8 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00000c7c       UnicodeVSPrint             0000000000000f1c f   BasePrintLib:PrintLib.obj
+ 0001:00000d20       BasePrintLibFillBuffer     0000000000000fc0 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00000d54       BasePrintLibValueToString  0000000000000ff4 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00000da4       BasePrintLibSPrintMarker   0000000000001044 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00001b98       BasePrintLibSPrint         0000000000001e38 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00001bbc       DivU64x32Remainder         0000000000001e5c f   BaseLib:DivU64x32Remainder.obj
  0002:00000000       ??_C@_0BE@BDFJLGLN@gBS?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000001ec0     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
  0002:00000018       ??_C@_0BE@DGNHAHIL@gST?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000001ed8     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
  0002:00000030       ??_C@_0EG@IHBEIGJL@q?3?2MdePkg?2Library?2UefiBootServic@ 0000000000001ef0     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
