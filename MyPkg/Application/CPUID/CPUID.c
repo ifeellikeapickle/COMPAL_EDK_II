@@ -10,7 +10,9 @@
 #include <CPUID.h>
 
 VOID
-PrintProcessorSignature (VOID)
+PrintProcessorSignature (
+    VOID
+    )
 {
     UINT32 eax, ebx, ecx, edx;
     CHAR8 signature[12];
@@ -23,7 +25,9 @@ PrintProcessorSignature (VOID)
 }
 
 VOID
-PrintProcessorBrandString (VOID)
+PrintProcessorBrandString (
+    VOID
+    )
 {
     UINT32 eax, ebx, ecx, edx;
     CHAR8 brand_string[48];
@@ -53,7 +57,9 @@ PrintProcessorBrandString (VOID)
 }
 
 VOID
-PrintProcessorVersionInfo (VOID)
+PrintProcessorVersionInfo (
+    VOID
+    )
 {
     UINT32 eax, ebx, ecx, edx;
     UINT8 family, model, stepping;
@@ -66,7 +72,9 @@ PrintProcessorVersionInfo (VOID)
 }
 
 VOID
-PrintProcessorFeaturesInfo (VOID)
+PrintProcessorFeaturesInfo (
+    VOID
+    )
 {
     UINT32  eax, ebx, ecx, edx;
     UINT32  xeax, xebx, xecx, xedx;
