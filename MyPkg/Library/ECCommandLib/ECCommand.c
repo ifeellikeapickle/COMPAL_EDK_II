@@ -3,6 +3,7 @@
 
 #include <Library/BaseLib.h>
 #include <Library/UefiLib.h>
+
 #include <Library/IoLib.h>
 
 #include <Library/UefiBootServicesTableLib.h>
@@ -35,11 +36,15 @@ IsObfFull (
     IN  UINT8   CommandPort
 )
 {
+    BOOLEAN     IsItFull;
+
     if ((IoRead8 (CommandPort) & 0x01) == 0x01) {
-        return TRUE;
+        IsItFull = TRUE;
     } else {
-        return FALSE;
+        IsItFull = FALSE;
     }
+
+    return IsItFull;
 }
 
 VOID
@@ -180,15 +185,12 @@ PrintEcEeprom (
     UINTN   Index;
     UINT8   Register;
 
-    // Use command 0x42 to access EC EEPROM
     WaitForIbf (COMPAL_EC_COMMAND_PORT);
     IoWrite8 (COMPAL_EC_COMMAND_PORT, 0x42);
 
-    // Specify which Bank to access
     WaitForIbf (COMPAL_EC_COMMAND_PORT);
     IoWrite8 (COMPAL_EC_DATA_PORT, Bank);
 
-    // Print the register from 0x00 to 0xFF
     for (Index = 0x00; Index <= 0xFF; Index ++) {
         WaitForIbf (COMPAL_EC_COMMAND_PORT);
         IoWrite8 (COMPAL_EC_COMMAND_PORT, 0x4E);
@@ -246,12 +248,12 @@ GetInputParameters (
 
 	gEfiShellParametersProtocol = NULL;
 
-	if (gEfiShellParametersProtocol != NULL){
+	if (gEfiShellParametersProtocol != NULL) {
 		Print (L"gEfiShellParametersProtocol is initialized\n");
         Argc = gEfiShellParametersProtocol->Argc;
         Argv = gEfiShellParametersProtocol->Argv;
 
-	}else {
+	} else {
         // check out input parameters from command line using UEFI Shell 2.0
 		Status = gBS->OpenProtocol(
             ImageHandle,
@@ -262,9 +264,9 @@ GetInputParameters (
             EFI_OPEN_PROTOCOL_GET_PROTOCOL
         ); 
 		if (EFI_ERROR(Status)) {
-		      Print(L"\nSorry, Getting Shell params did NOT work or in the EFI Shell 1.0: \n");
+		      Print(L"\nSorry, Getting Shell parameters did NOT work or in the EFI Shell 1.0: \n");
 			  return EFI_UNSUPPORTED;
-		}else{
+		} else {
 		    Argc = gEfiShellParametersProtocol->Argc;
 			Argv = gEfiShellParametersProtocol->Argv;
 		}

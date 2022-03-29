@@ -21,7 +21,6 @@
 
 [LibraryClasses]
   ECCommandLib
-  
   UefiApplicationEntryPoint
   BaseLib
   UefiLib

@@ -1,5 +1,5 @@
-#ifndef __EC_COMMAND_LIB__
-#define __EC_COMMAND_LIB__
+#ifndef __EC_COMMAND_LIB_H__
+#define __EC_COMMAND_LIB_H__
 
 #define KBC_DATA_PORT           0x60
 #define KBC_COMMAND_PORT        0x64

@@ -1,14 +1,16 @@
+// Standard CPUID Functions
 #define CPUID_SIGNATURE         0x00000000
 #define CPUID_VERSION_INFO      0x00000001
 #define CPUID_CACHE_PARAMS      0x00000004
 #define CPUID_EXTENDED_TOPOLOGY 0x0000000B
 
+// Extended CPUID Functions
 #define CPUID_EXTENDED_CPU_SIG  0x80000001
 #define CPUID_BRAND_STRING1     0x80000002
 #define CPUID_BRAND_STRING2     0x80000003
 #define CPUID_BRAND_STRING3     0x80000004
 
-//From Base.h
+// From Base.h
 #define  BIT00    0x00000001
 #define  BIT01    0x00000002
 #define  BIT02    0x00000004

@@ -15,10 +15,10 @@ PrintProcessorSignature (VOID)
     UINT32 eax, ebx, ecx, edx;
     CHAR8 signature[12];
     AsmCpuid (CPUID_SIGNATURE, &eax, &ebx, &ecx, &edx);
-    //Print(L"EAX: %08x\nEBX: %08x\nECX: %08x\nEDX: %08x\n", eax, ebx, ecx, edx);
     *(UINT32*)(signature + 0) = ebx;
     *(UINT32*)(signature + 4) = edx;
     *(UINT32*)(signature + 8) = ecx;
+    //Print(L"EAX: %08x\nEBX: %08x\nECX: %08x\nEDX: %08x\n", eax, ebx, ecx, edx);
     Print(L"   Signature: %a\n", signature);
 }
 

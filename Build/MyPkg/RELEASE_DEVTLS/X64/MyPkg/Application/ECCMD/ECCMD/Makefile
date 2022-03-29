@@ -198,11 +198,11 @@ STATIC_LIBRARY_FILES =  \
     $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\OUTPUT\BaseMemoryLib.lib \
     $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\OUTPUT\BasePcdLibNull.lib \
     $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\OUTPUT\BaseDebugLibNull.lib \
-    $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT\ECCommandLib.lib \
     $(BIN_DIR)\MdePkg\Library\BaseTimerLibNullTemplate\BaseTimerLibNullTemplate\OUTPUT\BaseTimerLibNullTemplate.lib \
     $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\OUTPUT\BaseIoLibIntrinsic.lib \
     $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\OUTPUT\BaseLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\OUTPUT\UefiApplicationEntryPoint.lib \
+    $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT\ECCommandLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\OUTPUT\UefiBootServicesTableLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\OUTPUT\UefiMemoryAllocationLib.lib \
     $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\OUTPUT\BasePrintLib.lib \
@@ -325,11 +325,11 @@ gen_libs:
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile
-	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseTimerLibNullTemplate\BaseTimerLibNullTemplate\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\Makefile
@@ -426,11 +426,11 @@ cleanlib:
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile cleanall
-	-@if exist $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseTimerLibNullTemplate\BaseTimerLibNullTemplate\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseTimerLibNullTemplate\BaseTimerLibNullTemplate\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile cleanall
+	-@if exist $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MyPkg\Library\ECCommandLib\ECCommandLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\Makefile cleanall
