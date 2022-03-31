@@ -66,120 +66,82 @@ IsObfFull (
 }
 
 VOID
-PrintIbfObf (
-    VOID
+EcCommandByKbc (
+    IN  UINT8   Command,
+    IN  UINT8   Data
 )
 {
-    UINT8   Ibf;
-    UINT8   Obf;
-
-    Ibf = (IoRead8 (KBC_COMMAND_PORT) & 0x02) >> 1;
-    Obf = IoRead8 (KBC_COMMAND_PORT) & 0x01;
-    Print (L"IBF: %d\nOBF: %d\n", Ibf, Obf);
-}
-
-VOID
-PrintCompanyIdByKbc (
-    VOID
-)
-{
-    UINT8   CompanyId[10];
-    UINT8   CompanyIdLetter;
-    UINT8   CompanyIdLength;
+    UINT8   OutputArray[10];
+    UINT8   OutputData;
+    UINT8   OutputLength;
     UINT8   Index = 0;
 
+    // Disable Keyboard Interface
     WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, 0xAD);
+    IoWrite8 (KBC_COMMAND_PORT, DISABLE_KB_COMMAND);
 
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, 0x41);
+    if (Command == 0x41 || Command == 0x52) {
 
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_DATA_PORT, 0xA1);
+        WaitForIbf (KBC_COMMAND_PORT);
+        IoWrite8 (KBC_COMMAND_PORT, Command);
 
-    WaitForObf (KBC_COMMAND_PORT);
-    while (IsObfFull (KBC_COMMAND_PORT)) {
-        CompanyIdLetter = IoRead8 (KBC_DATA_PORT);
-        CompanyId[Index] = CompanyIdLetter;
-        Index++;
+        WaitForIbf (KBC_COMMAND_PORT);
+        IoWrite8 (KBC_DATA_PORT, Data);
+
+        Index = 0;
         WaitForObf (KBC_COMMAND_PORT);
-    }
-    CompanyIdLength = Index;
-
-    for (Index = 0; Index < CompanyIdLength; Index++) {
-        Print (L" %x", CompanyId[Index]);
-        Print (L" (%c)\n", CompanyId[Index]);
-    }
-    Print (L"%a\n", CompanyId);
-
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, 0xAE);
-}
-
-VOID
-PrintProjectNameByKbc (
-    VOID
-)
-{
-    UINT8   ProjectName[10];
-    UINT8   ProjectNameLetter;
-    UINT8   ProjectNameLength;
-    UINT8   Index = 0;
-
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, 0xAD);
-
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, 0x52);
-
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_DATA_PORT, 0xA0);
-
-    WaitForObf (KBC_COMMAND_PORT);
-    while (IsObfFull (KBC_COMMAND_PORT)) {
-        ProjectNameLetter = IoRead8 (KBC_DATA_PORT);
-        ProjectName[Index] = ProjectNameLetter;
-        Index++;
-        WaitForObf (KBC_COMMAND_PORT);
-    }
-    ProjectNameLength = Index;
-
-    for (Index = 0; Index < ProjectNameLength; Index++) {
-        Print (L" %x", ProjectName[Index]);
-        Print (L" (%c)\n", ProjectName[Index]);
-    }
-    Print (L"%a\n", ProjectName);
-
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, 0xAE);
-}
-
-VOID
-PrintEcEeprom (
-    IN  UINT8   Bank
-)
-{
-    UINTN   Index;
-    UINT8   Register;
-
-    WaitForIbf (COMPAL_EC_COMMAND_PORT);
-    IoWrite8 (COMPAL_EC_COMMAND_PORT, 0x42);
-
-    WaitForIbf (COMPAL_EC_COMMAND_PORT);
-    IoWrite8 (COMPAL_EC_DATA_PORT, Bank);
-
-    for (Index = 0x00; Index <= 0xFF; Index ++) {
-        WaitForIbf (COMPAL_EC_COMMAND_PORT);
-        IoWrite8 (COMPAL_EC_COMMAND_PORT, 0x4E);
-        WaitForIbf (COMPAL_EC_COMMAND_PORT);
-        IoWrite8 (COMPAL_EC_DATA_PORT, (UINT8)Index);
-        WaitForObf (COMPAL_EC_COMMAND_PORT);
-        Register = IoRead8 (COMPAL_EC_DATA_PORT);
-        Print (L" %02x", Register);
-        if (Index % 0x10 == 0x0F) {
-            Print (L"\n");
+        while (IsObfFull (KBC_COMMAND_PORT)) {
+            OutputData = IoRead8 (KBC_DATA_PORT);
+            OutputArray[Index] = OutputData;
+            Index++;
+            WaitForObf (KBC_COMMAND_PORT);
         }
+        OutputLength = Index;
+
+        for (Index = 0; Index < OutputLength; Index++) {
+            Print (L" %02x", OutputArray[Index]);
+            Print (L" (%c)\n", OutputArray[Index]);
+        }
+        Print (L"%a\n", OutputArray);
+
+    } else if (Command == 0x42) {
+
+        if (Data < 0x00 || Data > 0x06) {
+            Print (L"Please enter Bank Number between 0 and 6\n");
+        } else {
+
+            WaitForIbf (KBC_COMMAND_PORT);
+            IoWrite8 (KBC_COMMAND_PORT, Command);
+
+            WaitForIbf (KBC_COMMAND_PORT);
+            IoWrite8 (KBC_DATA_PORT, Data);
+
+            for (Index = 0x00; Index <= 0xFF; Index++) {
+
+                WaitForIbf (KBC_COMMAND_PORT);
+                IoWrite8 (KBC_COMMAND_PORT, EEPROM_READ_COMMAND);
+
+                WaitForIbf (KBC_COMMAND_PORT);
+                IoWrite8 (KBC_DATA_PORT, Index);
+
+                WaitForObf (KBC_COMMAND_PORT);
+                OutputData = IoRead8 (KBC_DATA_PORT);
+                Print (L" %02x", OutputData);
+                if (Index % 0x10 == 0x0F) {
+                    Print (L"\n");
+                }
+                if (Index == 0xFF) {
+                    break;
+                }
+            }
+        }
+    } else {
+        Print (L"Command or data is not defined\n");
     }
+
+    // Enable Keyboard Interface
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, ENABLE_KB_COMMAND);
 }
 
 VOID
@@ -188,23 +150,23 @@ EcCommand (
 	IN  CHAR16      **Argv
 )
 {
-    UINT8           BankNumber;
+    EC_COMMAND_STRUCT   *EcCommandStructure;
+    UINT8               InputCommand;
+    UINT8               InputData[10];
 
-    if (Argc == 3 && !StrCmp(Argv[1], L"41") && (!StrCmp(Argv[2], L"A1") || !StrCmp(Argv[2], L"a1"))) {
-        PrintCompanyIdByKbc ();
-    } else if (Argc == 3 && !StrCmp(Argv[1], L"52") && (!StrCmp(Argv[2], L"A0") || !StrCmp(Argv[2], L"a0"))) {
-        PrintProjectNameByKbc ();
-    } else if (Argc == 3 && !StrCmp(Argv[1], L"42")) {
-        BankNumber = (UINT8)StrHexToUintn(Argv[2]);
-        if (BankNumber < 0x00 || BankNumber > 0x06) {
-            Print (L"Please enter Bank Number between 0 and 6.\n");
-        } else {
-            PrintEcEeprom (BankNumber);
-        }
-    } else if (Argc == 1) {
+    EcCommandStructure = NULL;
+
+    if (Argc < 3 || Argc > 3) {
         Print (L"     [File Name] [Command] [Data]\ne.g.   ECCMD.efi        41     A1\n");
-    } else {
-        Print (L"Command or data are not defined.\n");
+    } else if (Argc == 3) {
+
+        EcCommandStructure->InputCommand = (UINT8)StrHexToUintn(Argv[1]);
+        InputCommand = EcCommandStructure->InputCommand;
+
+        EcCommandStructure->InputData[0] = (UINT8)StrHexToUintn(Argv[2]);
+        InputData[0] = EcCommandStructure->InputData[0];
+
+        EcCommandByKbc (InputCommand, InputData[0]);
     }
 }
 

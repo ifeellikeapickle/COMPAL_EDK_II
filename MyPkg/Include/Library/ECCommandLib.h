@@ -10,61 +10,49 @@
 #define COMPAL_EC_DATA_PORT     0x68
 #define COMPAL_EC_COMMAND_PORT  0x6C
 
+#define DISABLE_KB_COMMAND      0xAD
+#define ENABLE_KB_COMMAND       0xAE
+#define EEPROM_READ_COMMAND     0x4E
+
+typedef struct {
+    UINT8                   InputCommand;
+    UINT8                   InputData[10];
+    UINT8                   InputDataLength;
+    UINT8                   OutputData[10];
+    UINT8                   OutputDataLength;
+} EC_COMMAND_STRUCT;
+
 VOID
 WaitForIbf (
-    IN  UINT8   CommandPort
+    IN  UINT8               CommandPort
 );
 
 VOID
 WaitForObf (
-    IN  UINT8   CommandPort
+    IN  UINT8               CommandPort
 );
 
 BOOLEAN
 IsObfFull (
-    IN  UINT8   CommandPort
+    IN  UINT8               CommandPort
 );
 
 VOID
-PrintIbfObf (
-    VOID
-);
-
-VOID
-PrintCompanyIdByCompal (
-    VOID
-);
-
-VOID
-PrintProjectNameByKbc (
-    VOID
-);
-
-VOID
-PrintProjectNameByAcpi (
-    VOID
-);
-
-VOID
-PrintProjectNameByCompal (
-    VOID
-);
-
-VOID
-PrintEcEeprom (
-    IN  UINT8   Bank
+EcCommandByKbc (
+    IN  UINT8               Command,
+    IN  UINT8               Data
 );
 
 VOID
 EcCommand (
-    IN  UINTN       Argc,
-	IN  CHAR16      **Argv
+    IN  UINTN               Argc,
+	IN  CHAR16              **Argv
 );
 
 EFI_STATUS
 GetInputParameters (
-    IN  EFI_HANDLE        ImageHandle,
-    IN  EFI_SYSTEM_TABLE  *SystemTable
+    IN  EFI_HANDLE          ImageHandle,
+    IN  EFI_SYSTEM_TABLE    *SystemTable
 );
 
 #endif
