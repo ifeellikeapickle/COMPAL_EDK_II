@@ -222,7 +222,6 @@ COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextOut.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Bluetooth.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiSpec.h \
-              $(WORKSPACE)MdePkg\Include\Library\TimerLib.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi30.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiBaseType.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiInternalFormRepresentation.h \

@@ -11,8 +11,6 @@
 #include <Protocol/LoadedImage.h>
 #include <Protocol/EfiShellParameters.h>
 
-#include <Library/TimerLib.h>
-
 #include <Library/ECCommandLib.h>
 
 VOID
@@ -20,7 +18,16 @@ WaitForIbf (
     IN  UINT8   CommandPort
 )
 {
-    while ((IoRead8 (CommandPort) & 0x02) != 0x00) {}
+    UINT8   Ibf;
+    UINTN   Time = 100;
+    
+    while (Time--) {
+        gBS->Stall (100);
+        Ibf = IoRead8 (CommandPort) & 0x02;
+        if (Ibf == 0x00) {
+            break;
+        }
+    }
 }
 
 VOID
@@ -28,7 +35,16 @@ WaitForObf (
     IN  UINT8   CommandPort
 )
 {
-    while ((IoRead8 (CommandPort) & 0x01) == 0x00) {}
+    UINT8   Obf;
+    UINTN   Time = 100;
+
+    while (Time--) {
+        gBS->Stall (100);
+        Obf = IoRead8 (CommandPort) & 0x01;
+        if (Obf == 0x01) {
+            break;
+        }
+    }
 }
 
 BOOLEAN
@@ -36,9 +52,11 @@ IsObfFull (
     IN  UINT8   CommandPort
 )
 {
+    UINT8       Obf;
     BOOLEAN     IsItFull;
 
-    if ((IoRead8 (CommandPort) & 0x01) == 0x01) {
+    Obf = IoRead8 (CommandPort) & 0x01;
+    if (Obf == 0x01) {
         IsItFull = TRUE;
     } else {
         IsItFull = FALSE;
@@ -61,35 +79,43 @@ PrintIbfObf (
 }
 
 VOID
-PrintCompanyIdByCompal (
+PrintCompanyIdByKbc (
     VOID
 )
 {
     UINT8   CompanyId[10];
     UINT8   CompanyIdLetter;
+    UINT8   CompanyIdLength;
     UINT8   Index = 0;
 
-    WaitForIbf (COMPAL_EC_COMMAND_PORT);
-    IoWrite8 (COMPAL_EC_COMMAND_PORT, 0x41);
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, 0xAD);
 
-    WaitForIbf (COMPAL_EC_COMMAND_PORT);
-    IoWrite8 (COMPAL_EC_DATA_PORT, 0xA1);
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, 0x41);
 
-    WaitForObf (COMPAL_EC_COMMAND_PORT);
-    while (IsObfFull (COMPAL_EC_COMMAND_PORT)) {
-        CompanyIdLetter = IoRead8 (COMPAL_EC_DATA_PORT);
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_DATA_PORT, 0xA1);
+
+    WaitForObf (KBC_COMMAND_PORT);
+    while (IsObfFull (KBC_COMMAND_PORT)) {
+        CompanyIdLetter = IoRead8 (KBC_DATA_PORT);
         CompanyId[Index] = CompanyIdLetter;
+        Index++;
+        WaitForObf (KBC_COMMAND_PORT);
+    }
+    CompanyIdLength = Index;
+
+    for (Index = 0; Index < CompanyIdLength; Index++) {
         Print (L" %x", CompanyId[Index]);
         Print (L" (%c)\n", CompanyId[Index]);
-        Index++;
-        //MicroSecondDelay (100000);
     }
     Print (L"%a\n", CompanyId);
+
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, 0xAE);
 }
 
-//
-// This port(method) has conflict with the keyboard input!!
-//
 VOID
 PrintProjectNameByKbc (
     VOID
@@ -97,7 +123,11 @@ PrintProjectNameByKbc (
 {
     UINT8   ProjectName[10];
     UINT8   ProjectNameLetter;
+    UINT8   ProjectNameLength;
     UINT8   Index = 0;
+
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, 0xAD);
 
     WaitForIbf (KBC_COMMAND_PORT);
     IoWrite8 (KBC_COMMAND_PORT, 0x52);
@@ -106,75 +136,22 @@ PrintProjectNameByKbc (
     IoWrite8 (KBC_DATA_PORT, 0xA0);
 
     WaitForObf (KBC_COMMAND_PORT);
-
     while (IsObfFull (KBC_COMMAND_PORT)) {
         ProjectNameLetter = IoRead8 (KBC_DATA_PORT);
         ProjectName[Index] = ProjectNameLetter;
+        Index++;
+        WaitForObf (KBC_COMMAND_PORT);
+    }
+    ProjectNameLength = Index;
+
+    for (Index = 0; Index < ProjectNameLength; Index++) {
         Print (L" %x", ProjectName[Index]);
         Print (L" (%c)\n", ProjectName[Index]);
-        Index++;
-        MicroSecondDelay (100000);
     }
-
     Print (L"%a\n", ProjectName);
-}
 
-VOID
-PrintProjectNameByAcpi (
-    VOID
-)
-{
-    UINT8   ProjectName[10];
-    UINT8   ProjectNameLetter;
-    UINT8   Index = 0;
-
-    WaitForIbf (ACPI_COMMAND_PORT);
-    IoWrite8 (ACPI_COMMAND_PORT, 0x52);
-
-    WaitForIbf (ACPI_COMMAND_PORT);
-    IoWrite8 (ACPI_DATA_PORT, 0xA0);
-
-    WaitForObf (ACPI_COMMAND_PORT);
-
-    while (IsObfFull (ACPI_COMMAND_PORT)) {
-        ProjectNameLetter = IoRead8 (ACPI_DATA_PORT);
-        ProjectName[Index] = ProjectNameLetter;
-        Print (L" %x", ProjectName[Index]);
-        Print (L" (%c)\n", ProjectName[Index]);
-        Index++;
-        //MicroSecondDelay (100000);
-    }
-
-    Print (L"%a\n", ProjectName);
-}
-
-VOID
-PrintProjectNameByCompal (
-    VOID
-)
-{
-    UINT8   ProjectName[10];
-    UINT8   ProjectNameLetter;
-    UINT8   Index = 0;
-
-    WaitForIbf (COMPAL_EC_COMMAND_PORT);
-    IoWrite8 (COMPAL_EC_COMMAND_PORT, 0x52);
-
-    WaitForIbf (COMPAL_EC_COMMAND_PORT);
-    IoWrite8 (COMPAL_EC_DATA_PORT, 0xA0);
-
-    WaitForObf (COMPAL_EC_COMMAND_PORT);
-
-    while (IsObfFull (COMPAL_EC_COMMAND_PORT)) {
-        ProjectNameLetter = IoRead8 (COMPAL_EC_DATA_PORT);
-        ProjectName[Index] = ProjectNameLetter;
-        Print (L" %x", ProjectName[Index]);
-        Print (L" (%c)\n", ProjectName[Index]);
-        Index++;
-        //MicroSecondDelay (100000);
-    }
-
-    Print (L"%a\n", ProjectName);
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, 0xAE);
 }
 
 VOID
@@ -214,9 +191,9 @@ EcCommand (
     UINT8           BankNumber;
 
     if (Argc == 3 && !StrCmp(Argv[1], L"41") && (!StrCmp(Argv[2], L"A1") || !StrCmp(Argv[2], L"a1"))) {
-        PrintCompanyIdByCompal ();
+        PrintCompanyIdByKbc ();
     } else if (Argc == 3 && !StrCmp(Argv[1], L"52") && (!StrCmp(Argv[2], L"A0") || !StrCmp(Argv[2], L"a0"))) {
-        PrintProjectNameByCompal ();
+        PrintProjectNameByKbc ();
     } else if (Argc == 3 && !StrCmp(Argv[1], L"42")) {
         BankNumber = (UINT8)StrHexToUintn(Argv[2]);
         if (BankNumber < 0x00 || BankNumber > 0x06) {
