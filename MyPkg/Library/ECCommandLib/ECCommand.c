@@ -75,6 +75,7 @@ EcCommandByKbc (
     UINT8   OutputData;
     UINT8   OutputLength;
     UINT8   Index = 0;
+    UINT8   RegisterTable[256];
 
     // Disable Keyboard Interface
     WaitForIbf (KBC_COMMAND_PORT);
@@ -126,14 +127,14 @@ EcCommandByKbc (
 
                 WaitForObf (KBC_COMMAND_PORT);
                 OutputData = IoRead8 (KBC_DATA_PORT);
-                Print (L" %02x", OutputData);
-                if (Index % 0x10 == 0x0F) {
-                    Print (L"\n");
-                }
+                RegisterTable[Index] = OutputData;
+
                 if (Index == 0xFF) {
                     break;
                 }
             }
+
+            FormatRegisterTable256 (RegisterTable);
         }
     } else {
         Print (L"Command or data is not defined\n");
@@ -167,6 +168,47 @@ EcCommand (
         InputData[0] = EcCommandStructure->InputData[0];
 
         EcCommandByKbc (InputCommand, InputData[0]);
+    }
+}
+
+VOID
+FormatRegisterTable256 (
+    IN  UINT8   Table[]
+)
+{
+    UINT8   Index;
+    UINT8   Index1;
+    UINT8   Index2;
+    UINT8   Index3;
+
+    Print (L"   ");
+    for (Index = 0x00; Index <= 0x0F; Index++) {
+        Print (L" %02x", Index);
+        if (Index == 0x0F) {
+            Print (L"\n");
+        }
+    }
+
+    for (Index1 = 0x00; Index1 <= 0xF0; Index1 += 0x10) {
+        Print (L" %02x", Index1);
+        for (Index2 = Index1; Index2 <= Index1 + 0x0F; Index2++) {
+            Print (L" %02x", Table[Index2]);
+            if (Index2 == 0xFF) {
+                break;
+            }
+        }
+        for (Index3 = Index1; Index3 <= Index1 + 0x0F; Index3++) {
+            Print (L" %1c", Table[Index3]);
+            if (Index3 == Index1 + 0x0F) {
+                Print (L"\n");
+            }
+            if (Index3 == 0xFF) {
+                break;
+            }
+        }
+        if (Index3 == 0xFF) {
+            break;
+        }
     }
 }
 

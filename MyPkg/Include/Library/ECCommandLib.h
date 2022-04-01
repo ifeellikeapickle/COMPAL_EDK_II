@@ -49,6 +49,11 @@ EcCommand (
 	IN  CHAR16              **Argv
 );
 
+VOID
+FormatRegisterTable256 (
+    IN  UINT8   Table[256]
+);
+
 EFI_STATUS
 GetInputParameters (
     IN  EFI_HANDLE          ImageHandle,
