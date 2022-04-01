@@ -227,31 +227,52 @@ STATIC_LIBRARY_FILES_LIST = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Application\
 
 
 COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
+              $(WORKSPACE)MdePkg\Include\Library\BaseLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics2.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextInEx.h \
+              $(WORKSPACE)MdePkg\Include\Library\UefiApplicationEntryPoint.h \
               $(WORKSPACE)MdePkg\Include\Guid\HiiFormMapMethodGuid.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextIn.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiPxe.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextOut.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShellEnvironment2.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShellParameters.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\DriverBinding.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Bluetooth.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiSpec.h \
+              $(WORKSPACE)MyPkg\Include\Library\ECCommandLib.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi30.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiBaseType.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiInternalFormRepresentation.h \
-              $(WORKSPACE)MyPkg\Include\Library\ECCommandLib.h \
+              $(WORKSPACE)MdePkg\Include\Library\UefiBootServicesTableLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextOut.h \
+              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi10.h \
               $(DEBUG_DIR)\AutoGen.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShell.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\LoadedImage.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi51.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi20.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi50.h \
+              $(WORKSPACE)MdePkg\Include\Guid\FileInfo.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShellInterface.h \
               $(WORKSPACE)MdePkg\Include\Uefi.h \
               $(WORKSPACE)MdePkg\Include\Guid\WinCertificate.h \
-              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi10.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\ComponentName.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiGpt.h \
-              $(WORKSPACE)MdePkg\Include\X64\ProcessorBind.h \
+              $(WORKSPACE)ShellPkg\Include\Library\ShellLib.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiMultiPhase.h \
+              $(WORKSPACE)ShellPkg\Include\ShellBase.h \
               $(WORKSPACE)MdePkg\Include\Guid\PcAnsi.h \
-              $(WORKSPACE)MdePkg\Include\IndustryStandard\AcpiAml.h \
-              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi40.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics.h \
+              $(WORKSPACE)MdePkg\Include\Library\UefiLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\SimpleFileSystem.h \
               $(WORKSPACE)MdePkg\Include\Base.h \
+              $(WORKSPACE)MdePkg\Include\X64\ProcessorBind.h \
+              $(WORKSPACE)MdePkg\Include\IndustryStandard\AcpiAml.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\GraphicsOutput.h \
+              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi40.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration2.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\ComponentName2.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DevicePath.h \
               
 

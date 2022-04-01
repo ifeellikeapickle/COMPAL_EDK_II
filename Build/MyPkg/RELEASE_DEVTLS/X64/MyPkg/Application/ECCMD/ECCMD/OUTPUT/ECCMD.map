@@ -1,82 +1,83 @@
  ECCMD
 
- Timestamp is 6246667c (Fri Apr 01 10:42:04 2022)
+ Timestamp is 6246bf9a (Fri Apr 01 17:02:18 2022)
 
  Preferred load address is 0000000000000000
 
  Start         Length     Name                   Class
- 0001:00000000 00001bc6H .text                   CODE
+ 0001:00000000 00001bd6H .text                   CODE
  0002:00000000 00000000H .data                   DATA
  0002:00000000 00000c97H .rdata                  DATA
  0002:00000c98 00000020H .bss                    DATA
- 0003:00000000 00000138H .pdata                  DATA
- 0004:00000000 000000dcH .xdata                  DATA
+ 0003:00000000 00000150H .pdata                  DATA
+ 0004:00000000 000000d8H .xdata                  DATA
 
   Address         Publics by Value              Rva+Base               Lib:Object
 
  0001:00000000       _ModuleEntryPoint          00000000000002a0 f   UefiApplicationEntryPoint:ApplicationEntryPoint.obj
  0001:00000064       UefiBootServicesTableLibConstructor 0000000000000304 f   UefiBootServicesTableLib:UefiBootServicesTableLib.obj
  0001:00000110       ProcessLibraryConstructorList 00000000000003b0 f   ECCMD:AutoGen.obj
- 0001:00000250       ProcessLibraryDestructorList 00000000000004f0 f   ECCMD:AutoGen.obj
- 0001:00000250       DebugAssert                00000000000004f0 f   BaseDebugLibNull:DebugLib.obj
- 0001:00000254       ProcessModuleEntryPointList 00000000000004f4 f   ECCMD:AutoGen.obj
- 0001:0000025c       UefiMain                   00000000000004fc f   ECCMD:ECCMD.obj
- 0001:00000264       DebugPrint                 0000000000000504 f   BaseDebugLibNull:DebugLib.obj
- 0001:00000270       DebugAssertEnabled         0000000000000510 f   BaseDebugLibNull:DebugLib.obj
- 0001:00000270       DebugPrintEnabled          0000000000000510 f   BaseDebugLibNull:DebugLib.obj
- 0001:00000270       DebugPrintLevelEnabled     0000000000000510 f   BaseDebugLibNull:DebugLib.obj
- 0001:00000274       WaitForIbf                 0000000000000514 f   ECCommandLib:ECCommand.obj
- 0001:000002b8       WaitForObf                 0000000000000558 f   ECCommandLib:ECCommand.obj
- 0001:000002fc       FormatRegisterTable256     000000000000059c f   ECCommandLib:ECCommand.obj
- 0001:000003f4       EcCommandByKbc             0000000000000694 f   ECCommandLib:ECCommand.obj
- 0001:000005a8       EcCommand                  0000000000000848 f   ECCommandLib:ECCommand.obj
- 0001:00000610       GetInputParameters         00000000000008b0 f   ECCommandLib:ECCommand.obj
- 0001:000006a0       UefiRuntimeServicesTableLibConstructor 0000000000000940 f   UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
- 0001:000006e4       UefiLibConstructor         0000000000000984 f   UefiLib:UefiLib.obj
- 0001:000006e8       InternalPrint              0000000000000988 f   UefiLib:UefiLibPrint.obj
- 0001:00000808       Print                      0000000000000aa8 f   UefiLib:UefiLibPrint.obj
- 0001:00000838       IoRead8                    0000000000000ad8 f   BaseIoLibIntrinsic:IoLibMsc.obj
- 0001:00000840       IoWrite8                   0000000000000ae0 f   BaseIoLibIntrinsic:IoLibMsc.obj
- 0001:00000848       StrLen                     0000000000000ae8 f   BaseLib:String.obj
- 0001:00000900       StrSize                    0000000000000ba0 f   BaseLib:String.obj
- 0001:00000914       InternalHexCharToUintn     0000000000000bb4 f   BaseLib:String.obj
- 0001:00000944       InternalIsHexaDecimalDigitCharacter 0000000000000be4 f   BaseLib:String.obj
- 0001:0000096c       StrHexToUintn              0000000000000c0c f   BaseLib:String.obj
- 0001:00000a58       AsciiStrLen                0000000000000cf8 f   BaseLib:String.obj
- 0001:00000ae0       AsciiStrSize               0000000000000d80 f   BaseLib:String.obj
- 0001:00000af4       ReadUnaligned16            0000000000000d94 f   BaseLib:Unaligned.obj
- 0001:00000b2c       ReadUnaligned32            0000000000000dcc f   BaseLib:Unaligned.obj
- 0001:00000b64       InternalMathDivRemU64x32   0000000000000e04 f   BaseLib:Math64.obj
- 0001:00000b80       InternalAllocatePool       0000000000000e20 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
- 0001:00000bac       AllocatePool               0000000000000e4c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
- 0001:00000bbc       FreePool                   0000000000000e5c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
- 0001:00000c30       UnicodeVSPrint             0000000000000ed0 f   BasePrintLib:PrintLib.obj
- 0001:00000cd4       BasePrintLibFillBuffer     0000000000000f74 f   BasePrintLib:PrintLibInternal.obj
- 0001:00000d08       BasePrintLibValueToString  0000000000000fa8 f   BasePrintLib:PrintLibInternal.obj
- 0001:00000d58       BasePrintLibSPrintMarker   0000000000000ff8 f   BasePrintLib:PrintLibInternal.obj
- 0001:00001b4c       BasePrintLibSPrint         0000000000001dec f   BasePrintLib:PrintLibInternal.obj
- 0001:00001b70       DivU64x32Remainder         0000000000001e10 f   BaseLib:DivU64x32Remainder.obj
+ 0001:00000250       ProcessModuleEntryPointList 00000000000004f0 f   ECCMD:AutoGen.obj
+ 0001:00000258       UefiMain                   00000000000004f8 f   ECCMD:ECCMD.obj
+ 0001:000002e8       DebugPrint                 0000000000000588 f   BaseDebugLibNull:DebugLib.obj
+ 0001:000002f4       ProcessLibraryDestructorList 0000000000000594 f   ECCMD:AutoGen.obj
+ 0001:000002f4       DebugAssert                0000000000000594 f   BaseDebugLibNull:DebugLib.obj
+ 0001:000002f8       DebugAssertEnabled         0000000000000598 f   BaseDebugLibNull:DebugLib.obj
+ 0001:000002f8       DebugPrintLevelEnabled     0000000000000598 f   BaseDebugLibNull:DebugLib.obj
+ 0001:000002f8       DebugPrintEnabled          0000000000000598 f   BaseDebugLibNull:DebugLib.obj
+ 0001:000002fc       WaitForIbf                 000000000000059c f   ECCommandLib:ECCommand.obj
+ 0001:00000340       WaitForObf                 00000000000005e0 f   ECCommandLib:ECCommand.obj
+ 0001:00000384       EepromBankAssign           0000000000000624 f   ECCommandLib:ECCommand.obj
+ 0001:000003b8       EepromReadByte             0000000000000658 f   ECCommandLib:ECCommand.obj
+ 0001:000003fc       FormatRegisterTable256     000000000000069c f   ECCommandLib:ECCommand.obj
+ 0001:000004f4       EcCommandByKbc             0000000000000794 f   ECCommandLib:ECCommand.obj
+ 0001:00000648       EcCommand                  00000000000008e8 f   ECCommandLib:ECCommand.obj
+ 0001:000006b0       UefiRuntimeServicesTableLibConstructor 0000000000000950 f   UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
+ 0001:000006f4       UefiLibConstructor         0000000000000994 f   UefiLib:UefiLib.obj
+ 0001:000006f8       InternalPrint              0000000000000998 f   UefiLib:UefiLibPrint.obj
+ 0001:00000818       Print                      0000000000000ab8 f   UefiLib:UefiLibPrint.obj
+ 0001:00000848       IoRead8                    0000000000000ae8 f   BaseIoLibIntrinsic:IoLibMsc.obj
+ 0001:00000850       IoWrite8                   0000000000000af0 f   BaseIoLibIntrinsic:IoLibMsc.obj
+ 0001:00000858       StrLen                     0000000000000af8 f   BaseLib:String.obj
+ 0001:00000910       StrSize                    0000000000000bb0 f   BaseLib:String.obj
+ 0001:00000924       InternalHexCharToUintn     0000000000000bc4 f   BaseLib:String.obj
+ 0001:00000954       InternalIsHexaDecimalDigitCharacter 0000000000000bf4 f   BaseLib:String.obj
+ 0001:0000097c       StrHexToUintn              0000000000000c1c f   BaseLib:String.obj
+ 0001:00000a68       AsciiStrLen                0000000000000d08 f   BaseLib:String.obj
+ 0001:00000af0       AsciiStrSize               0000000000000d90 f   BaseLib:String.obj
+ 0001:00000b04       ReadUnaligned16            0000000000000da4 f   BaseLib:Unaligned.obj
+ 0001:00000b3c       ReadUnaligned32            0000000000000ddc f   BaseLib:Unaligned.obj
+ 0001:00000b74       InternalMathDivRemU64x32   0000000000000e14 f   BaseLib:Math64.obj
+ 0001:00000b90       InternalAllocatePool       0000000000000e30 f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00000bbc       AllocatePool               0000000000000e5c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00000bcc       FreePool                   0000000000000e6c f   UefiMemoryAllocationLib:MemoryAllocationLib.obj
+ 0001:00000c40       UnicodeVSPrint             0000000000000ee0 f   BasePrintLib:PrintLib.obj
+ 0001:00000ce4       BasePrintLibFillBuffer     0000000000000f84 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00000d18       BasePrintLibValueToString  0000000000000fb8 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00000d68       BasePrintLibSPrintMarker   0000000000001008 f   BasePrintLib:PrintLibInternal.obj
+ 0001:00001b5c       BasePrintLibSPrint         0000000000001dfc f   BasePrintLib:PrintLibInternal.obj
+ 0001:00001b80       DivU64x32Remainder         0000000000001e20 f   BaseLib:DivU64x32Remainder.obj
  0002:00000000       ??_C@_0BE@BDFJLGLN@gBS?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000001e80     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
  0002:00000018       ??_C@_0BE@DGNHAHIL@gST?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000001e98     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
  0002:00000030       ??_C@_0EG@IHBEIGJL@q?3?2MdePkg?2Library?2UefiBootServic@ 0000000000001eb0     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
  0002:00000078       ??_C@_0BN@COECPDCC@gImageHandle?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000001ef8     UefiBootServicesTableLib:UefiBootServicesTableLib.obj
- 0002:00000098       _gPcd_FixedAtBuild_PcdMaximumAsciiStringLength 0000000000001f18     ECCMD:AutoGen.obj
  0002:00000098       _gPcd_FixedAtBuild_PcdMaximumUnicodeStringLength 0000000000001f18     ECCMD:AutoGen.obj
+ 0002:00000098       _gPcd_FixedAtBuild_PcdMaximumAsciiStringLength 0000000000001f18     ECCMD:AutoGen.obj
  0002:0000009c       _gPcd_FixedAtBuild_PcdUefiLibMaxPrintBufferSize 0000000000001f1c     ECCMD:AutoGen.obj
  0002:000000a0       _gUefiDriverRevision       0000000000001f20     ECCMD:AutoGen.obj
  0002:000000b0       ??_C@_0FA@PLGEIFOI@q?3?2Build?2MyPkg?2RELEASE_DEVTLS?2X6@ 0000000000001f30     ECCMD:AutoGen.obj
  0002:00000100       ??_C@_0BE@DCHLEIGN@?$CBEFI_ERROR?5?$CIStatus?$CJ?$AA@ 0000000000001f80     ECCMD:AutoGen.obj
  0002:00000118       ??_C@_0CB@DMEJJJHA@?6ASSERT_EFI_ERROR?5?$CIStatus?5?$DN?5?$CFr?$CJ?6@ 0000000000001f98     ECCMD:AutoGen.obj
- 0002:00000140       ??_C@_19EALHEIO@?$AA?5?$AA?$CF?$AA1?$AAc?$AA?$AA@ 0000000000001fc0     ECCommandLib:ECCommand.obj
- 0002:0000014c       ??_C@_13LBAGMAIH@?$AA?6?$AA?$AA@ 0000000000001fcc     ECCommandLib:ECCommand.obj
- 0002:00000150       ??_C@_1M@FHJLFHFE@?$AA?5?$AA?$CF?$AA0?$AA2?$AAx?$AA?$AA@ 0000000000001fd0     ECCommandLib:ECCommand.obj
- 0002:00000160       ??_C@_17MEDFOIMI@?$AA?5?$AA?5?$AA?5?$AA?$AA@ 0000000000001fe0     ECCommandLib:ECCommand.obj
- 0002:00000168       ??_C@_17IHFOHADP@?$AA?$CF?$AAa?$AA?6?$AA?$AA@ 0000000000001fe8     ECCommandLib:ECCommand.obj
- 0002:00000170       ??_C@_1O@EFBDIILA@?$AA?5?$AA?$CI?$AA?$CF?$AAc?$AA?$CJ?$AA?6?$AA?$AA@ 0000000000001ff0     ECCommandLib:ECCommand.obj
- 0002:00000180       ??_C@_1EA@JDLELKBA@?$AAC?$AAo?$AAm?$AAm?$AAa?$AAn?$AAd?$AA?5?$AAo?$AAr?$AA?5?$AAd?$AAa?$AAt?$AAa?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAf?$AAi?$AAn?$AAe?$AAd?$AA?6?$AA?$AA@ 0000000000002000     ECCommandLib:ECCommand.obj
- 0002:000001c0       ??_C@_1FE@PJHNFKBC@?$AAP?$AAl?$AAe?$AAa?$AAs?$AAe?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAB?$AAa?$AAn?$AAk?$AA?5?$AAN?$AAu?$AAm?$AAb?$AAe?$AAr?$AA?5?$AAb?$AAe?$AAt?$AAw?$AAe?$AAe?$AAn@ 0000000000002040     ECCommandLib:ECCommand.obj
- 0002:00000220       ??_C@_1IK@FKCBICHK@?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$FL?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAN?$AAa?$AAm?$AAe?$AA?$FN?$AA?5?$AA?$FL?$AAC?$AAo?$AAm?$AAm?$AAa?$AAn?$AAd?$AA?$FN?$AA?5?$AA?$FL?$AAD?$AAa?$AAt?$AAa@ 00000000000020a0     ECCommandLib:ECCommand.obj
- 0002:000002b0       ??_C@_1JC@MGPCCNPF@?$AA?6?$AAS?$AAo?$AAr?$AAr?$AAy?$AA?0?$AA?5?$AAG?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAS?$AAh?$AAe?$AAl?$AAl?$AA?5?$AAp?$AAa?$AAr?$AAa?$AAm?$AAe?$AAt?$AAe?$AAr?$AAs@ 0000000000002130     ECCommandLib:ECCommand.obj
+ 0002:00000140       ??_C@_1JC@MGPCCNPF@?$AA?6?$AAS?$AAo?$AAr?$AAr?$AAy?$AA?0?$AA?5?$AAG?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAS?$AAh?$AAe?$AAl?$AAl?$AA?5?$AAp?$AAa?$AAr?$AAa?$AAm?$AAe?$AAt?$AAe?$AAr?$AAs@ 0000000000001fc0     ECCMD:ECCMD.obj
+ 0002:000001d8       ??_C@_19EALHEIO@?$AA?5?$AA?$CF?$AA1?$AAc?$AA?$AA@ 0000000000002058     ECCommandLib:ECCommand.obj
+ 0002:000001e4       ??_C@_13LBAGMAIH@?$AA?6?$AA?$AA@ 0000000000002064     ECCommandLib:ECCommand.obj
+ 0002:000001e8       ??_C@_1M@FHJLFHFE@?$AA?5?$AA?$CF?$AA0?$AA2?$AAx?$AA?$AA@ 0000000000002068     ECCommandLib:ECCommand.obj
+ 0002:000001f8       ??_C@_17MEDFOIMI@?$AA?5?$AA?5?$AA?5?$AA?$AA@ 0000000000002078     ECCommandLib:ECCommand.obj
+ 0002:00000200       ??_C@_17IHFOHADP@?$AA?$CF?$AAa?$AA?6?$AA?$AA@ 0000000000002080     ECCommandLib:ECCommand.obj
+ 0002:00000208       ??_C@_1O@EFBDIILA@?$AA?5?$AA?$CI?$AA?$CF?$AAc?$AA?$CJ?$AA?6?$AA?$AA@ 0000000000002088     ECCommandLib:ECCommand.obj
+ 0002:00000220       ??_C@_1EA@JDLELKBA@?$AAC?$AAo?$AAm?$AAm?$AAa?$AAn?$AAd?$AA?5?$AAo?$AAr?$AA?5?$AAd?$AAa?$AAt?$AAa?$AA?5?$AAi?$AAs?$AA?5?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAf?$AAi?$AAn?$AAe?$AAd?$AA?6?$AA?$AA@ 00000000000020a0     ECCommandLib:ECCommand.obj
+ 0002:00000260       ??_C@_1FE@PJHNFKBC@?$AAP?$AAl?$AAe?$AAa?$AAs?$AAe?$AA?5?$AAe?$AAn?$AAt?$AAe?$AAr?$AA?5?$AAB?$AAa?$AAn?$AAk?$AA?5?$AAN?$AAu?$AAm?$AAb?$AAe?$AAr?$AA?5?$AAb?$AAe?$AAt?$AAw?$AAe?$AAe?$AAn@ 00000000000020e0     ECCommandLib:ECCommand.obj
+ 0002:000002c0       ??_C@_1IK@FKCBICHK@?$AA?5?$AA?5?$AA?5?$AA?5?$AA?5?$AA?$FL?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAN?$AAa?$AAm?$AAe?$AA?$FN?$AA?5?$AA?$FL?$AAC?$AAo?$AAm?$AAm?$AAa?$AAn?$AAd?$AA?$FN?$AA?5?$AA?$FL?$AAD?$AAa?$AAt?$AAa@ 0000000000002140     ECCommandLib:ECCommand.obj
  0002:00000350       ??_C@_0EM@DLKNJEFG@q?3?2MdePkg?2Library?2UefiRuntimeSer@ 00000000000021d0     UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
  0002:000003a0       ??_C@_0BE@OBDFIHND@gRT?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000002220     UefiRuntimeServicesTableLib:UefiRuntimeServicesTableLib.obj
  0002:000003b8       ??_C@_0BH@IACGKAP@Buffer?5?$CB?$DN?5?$CI?$CIvoid?5?$CK?$CJ?50?$CJ?$AA@ 0000000000002238     UefiLib:UefiLibPrint.obj

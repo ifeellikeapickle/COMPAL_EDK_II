@@ -130,7 +130,7 @@
   #MyPkg/Application/EDID/EDID.inf
   #MyPkg/Application/GPIO/GPIO.inf
   MyPkg/Application/ECCMD/ECCMD.inf
-  MyPkg/Application/Test/Test.inf
+  #MyPkg/Application/Test/Test.inf
 
 ################################################################
 #

@@ -9,10 +9,11 @@
   FILE_GUID                  = 6014a03a-fb5b-4c4d-a594-39d18c47d72d
   MODULE_TYPE                = UEFI_APPLICATION
   VERSION_STRING             = 1.0
-  ENTRY_POINT                = UefiMain
+  ENTRY_POINT                = ShellCEntryLib
 
 [Packages.X64]
   MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
 
 [Binaries.X64]
   PE32|Test.efi
@@ -21,10 +22,27 @@
 
 [Protocols.X64]
   ## SOMETIMES_CONSUMES
+  ## SOMETIMES_CONSUMES
   gEfiDevicePathProtocolGuid
 
   ## UNDEFINED
   gEfiDebugPortProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  ## SOMETIMES_CONSUMES
+  gEfiHiiFontProtocolGuid
+
+  ## CONSUMES
+  gEfiHiiStringProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiHiiImageProtocolGuid
+
+  ## CONSUMES
+  gEfiHiiDatabaseProtocolGuid
+
+  ## CONSUMES
+  gEfiHiiConfigRoutingProtocolGuid
 
   ## SOMETIMES_PRODUCES
   gEfiDriverBindingProtocolGuid
@@ -34,9 +52,6 @@
 
   ## SOMETIMES_CONSUMES
   gEfiGraphicsOutputProtocolGuid
-
-  ## SOMETIMES_CONSUMES
-  gEfiHiiFontProtocolGuid
 
   ## SOMETIMES_CONSUMES # Consumes if gEfiGraphicsOutputProtocolGuid uninstalled
   gEfiUgaDrawProtocolGuid
@@ -58,6 +73,28 @@
 
   ## SOMETIMES_PRODUCES # User chooses to produce it
   gEfiDriverDiagnostics2ProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiFormBrowser2ProtocolGuid
+
+  ## CONSUMES
+  ## SOMETIMES_CONSUMES
+  gEfiShellParametersProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  ## SOMETIMES_CONSUMES
+  gEfiShellInterfaceGuid
+
+  ## CONSUMES
+  gEfiSimpleFileSystemProtocolGuid
+
+  # shell 2.0
+  ## SOMETIMES_CONSUMES
+  gEfiShellProtocolGuid
+
+  # 'old' shell
+  ## SOMETIMES_CONSUMES
+  gEfiShellEnvironment2Guid
 
 
 [Ppis.X64]
@@ -102,26 +139,36 @@
   ## SOMETIMES_CONSUMES  ## Variable
   gEfiGlobalVariableGuid
 
+  ## CONSUMES ## GUID
+  gEfiFileInfoGuid
+
+  ## CONSUMES ## GUID
+  gEfiShellEnvironment2ExtGuid
+
 
 [PcdEx.X64]
 
 [LibraryClasses.X64]
 ## @LIB_INSTANCES
-#  MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
 #  MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
 #  MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+#  MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
 #  MdePkg/Library/BaseLib/BaseLib.inf
 #  MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
-#  MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
 #  MdePkg/Library/BasePrintLib/BasePrintLib.inf
+#  MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
 #  MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
 #  MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-#  MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
+#  MdeModulePkg/Library/UefiHiiServicesLib/UefiHiiServicesLib.inf
 #  MdePkg/Library/UefiLib/UefiLib.inf
+#  MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
+#  MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
 #  MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
+#  ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
+#  ShellPkg/Library/UefiShellLib/UefiShellLib.inf
 
 [Depex.X64]
-
+#  (gEfiHiiStringProtocolGuid        AND gEfiHiiDatabaseProtocolGuid      AND gEfiHiiConfigRoutingProtocolGuid) AND (gEfiHiiStringProtocolGuid        AND gEfiHiiDatabaseProtocolGuid      AND gEfiHiiConfigRoutingProtocolGuid) AND (gEfiHiiStringProtocolGuid        AND gEfiHiiDatabaseProtocolGuid      AND gEfiHiiConfigRoutingProtocolGuid) AND (gEfiHiiStringProtocolGuid        AND gEfiHiiDatabaseProtocolGuid      AND gEfiHiiConfigRoutingProtocolGuid)
 
 #
 # The following information is for reference only and not required by the build tools.

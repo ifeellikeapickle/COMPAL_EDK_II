@@ -25,26 +25,27 @@ PLATFORM_OUTPUT_DIR = Build\MyPkg
 #
 # Module Macro Definition
 #
-MODULE_NAME = ECCommandLib
-MODULE_GUID = 50930571-c85e-462a-ba19-d6218a9df8e0
-MODULE_NAME_GUID = ECCommandLib
+MODULE_NAME = UefiHiiLib
+MODULE_GUID = 3143687A-7C80-404e-B5FE-2D88980E1B1C
+MODULE_NAME_GUID = UefiHiiLib
 MODULE_VERSION = 1.0
-MODULE_TYPE = BASE
-MODULE_FILE = ECCommandLib.inf
-MODULE_FILE_BASE_NAME = ECCommandLib
+MODULE_TYPE = UEFI_DRIVER
+MODULE_FILE = UefiHiiLib.inf
+MODULE_FILE_BASE_NAME = UefiHiiLib
 BASE_NAME = $(MODULE_NAME)
-MODULE_RELATIVE_DIR = MyPkg\Library\ECCommandLib
-PACKAGE_RELATIVE_DIR = Library\ECCommandLib
-MODULE_DIR = $(WORKSPACE)\MyPkg\Library\ECCommandLib
+MODULE_RELATIVE_DIR = MdeModulePkg\Library\UefiHiiLib
+PACKAGE_RELATIVE_DIR = Library\UefiHiiLib
+MODULE_DIR = $(WORKSPACE)\MdeModulePkg\Library\UefiHiiLib
 
 MODULE_ENTRY_POINT = _ModuleEntryPoint
 ARCH_ENTRY_POINT = _ModuleEntryPoint
 IMAGE_ENTRY_POINT = _ModuleEntryPoint
 
-INF_VERSION = 0x0001001B
-BASE_NAME = ECCommandLib
-FILE_GUID = 50930571-c85e-462a-ba19-d6218a9df8e0
-MODULE_TYPE = BASE
+INF_VERSION = 0x00010005
+BASE_NAME = UefiHiiLib
+MODULE_UNI_FILE = UefiHiiLib.uni
+FILE_GUID = 3143687A-7C80-404e-B5FE-2D88980E1B1C
+MODULE_TYPE = UEFI_DRIVER
 VERSION_STRING = 1.0
 
 #
@@ -62,9 +63,9 @@ TARGET = RELEASE
 BUILD_DIR = q:\Build\MyPkg\RELEASE_DEVTLS
 BIN_DIR = $(BUILD_DIR)\X64
 LIB_DIR = $(BIN_DIR)
-MODULE_BUILD_DIR = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib
-OUTPUT_DIR = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT
-DEBUG_DIR = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib\DEBUG
+MODULE_BUILD_DIR = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib
+OUTPUT_DIR = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT
+DEBUG_DIR = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\DEBUG
 DEST_DIR_OUTPUT = $(OUTPUT_DIR)
 DEST_DIR_DEBUG = $(DEBUG_DIR)
 
@@ -191,56 +192,69 @@ MAKE_FILE = $(MODULE_BUILD_DIR)\Makefile
 # Build Macro
 #
 OBJECT_FILES =  \
-    $(OUTPUT_DIR)\ECCommand.obj
+    $(OUTPUT_DIR)\HiiLib.obj \
+    $(OUTPUT_DIR)\HiiString.obj \
+    $(OUTPUT_DIR)\HiiLanguage.obj
 
 INC =  \
-    /I$(WORKSPACE)MyPkg\Library\ECCommandLib \
+    /I$(WORKSPACE)MdeModulePkg\Library\UefiHiiLib \
     /I$(DEBUG_DIR) \
-    /I$(WORKSPACE)MyPkg \
-    /I$(WORKSPACE)MyPkg\Include \
     /I$(WORKSPACE)MdePkg \
     /I$(WORKSPACE)MdePkg\Include \
     /I$(WORKSPACE)MdePkg\Include\X64 \
-    /I$(WORKSPACE)ShellPkg \
-    /I$(WORKSPACE)ShellPkg\Include
+    /I$(WORKSPACE)MdeModulePkg \
+    /I$(WORKSPACE)MdeModulePkg\Include
 
-OBJECT_FILES_LIST = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT\object_files.lst
+OBJECT_FILES_LIST = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\object_files.lst
 
 
 COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\HiiFont.h \
               $(WORKSPACE)MdePkg\Include\Library\BaseLib.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\ComponentName.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\HiiDatabase.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics2.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextInEx.h \
               $(WORKSPACE)MdePkg\Include\Guid\HiiFormMapMethodGuid.h \
               $(WORKSPACE)MdePkg\Include\Protocol\GraphicsOutput.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiPxe.h \
-              $(DEBUG_DIR)\AutoGen.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextOut.h \
+              $(WORKSPACE)MdePkg\Include\Library\MemoryAllocationLib.h \
+              $(WORKSPACE)MdeModulePkg\Include\Library\UefiHiiServicesLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\DriverBinding.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Bluetooth.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\FormBrowser2.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiSpec.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi30.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiBaseType.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiInternalFormRepresentation.h \
+              $(WORKSPACE)MdePkg\Include\Library\DebugLib.h \
+              $(WORKSPACE)MdePkg\Include\Library\BaseMemoryLib.h \
               $(WORKSPACE)MdePkg\Include\Library\UefiBootServicesTableLib.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\DriverBinding.h \
-              $(WORKSPACE)MyPkg\Include\Library\ECCommandLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextOut.h \
+              $(DEBUG_DIR)\AutoGen.h \
+              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi10.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextIn.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\ComponentName2.h \
+              $(WORKSPACE)MdePkg\Include\Library\DevicePathLib.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi51.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi20.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi50.h \
+              $(WORKSPACE)MdeModulePkg\Library\UefiHiiLib\InternalHiiLib.h \
               $(WORKSPACE)MdePkg\Include\Uefi.h \
+              $(WORKSPACE)MdeModulePkg\Include\Library\HiiLib.h \
               $(WORKSPACE)MdePkg\Include\Guid\WinCertificate.h \
-              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi10.h \
-              $(WORKSPACE)MdePkg\Include\Uefi\UefiGpt.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\ComponentName.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\HiiConfigRouting.h \
               $(WORKSPACE)MdePkg\Include\X64\ProcessorBind.h \
+              $(WORKSPACE)MdePkg\Include\Guid\HiiPlatformSetupFormset.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiMultiPhase.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\HiiString.h \
               $(WORKSPACE)MdePkg\Include\Guid\PcAnsi.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics.h \
               $(WORKSPACE)MdePkg\Include\Library\UefiLib.h \
-              $(WORKSPACE)MdePkg\Include\Library\IoLib.h \
+              $(WORKSPACE)MdePkg\Include\Uefi\UefiGpt.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\HiiImage.h \
+              $(WORKSPACE)MdePkg\Include\Library\PrintLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\ComponentName2.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\AcpiAml.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi40.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration2.h \
@@ -255,7 +269,7 @@ FORCE_REBUILD = force_build
 INIT_TARGET = init
 PCH_TARGET =
 BC_TARGET = 
-CODA_TARGET = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT\ECCommandLib.lib \
+CODA_TARGET = q:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\UefiHiiLib.lib \
               
 
 #
@@ -327,13 +341,23 @@ gen_fds:
 #
 # Individual Object Build Targets
 #
-$(OUTPUT_DIR)\ECCommandLib.lib : $(OBJECT_FILES)
-	"$(SLINK)" $(SLINK_FLAGS) /OUT:q:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT\ECCommandLib.lib @$(OBJECT_FILES_LIST)
+$(OUTPUT_DIR)\UefiHiiLib.lib : $(OBJECT_FILES)
+	"$(SLINK)" $(SLINK_FLAGS) /OUT:q:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\UefiHiiLib.lib @$(OBJECT_FILES_LIST)
 
-$(OUTPUT_DIR)\ECCommand.obj : $(MAKE_FILE)
-$(OUTPUT_DIR)\ECCommand.obj : $(COMMON_DEPS)
-$(OUTPUT_DIR)\ECCommand.obj : $(WORKSPACE)MyPkg\Library\ECCommandLib\ECCommand.c
-	"$(CC)" /Foq:\Build\MyPkg\RELEASE_DEVTLS\X64\MyPkg\Library\ECCommandLib\ECCommandLib\OUTPUT\.\ECCommand.obj $(CC_FLAGS) $(INC) q:\MyPkg\Library\ECCommandLib\ECCommand.c
+$(OUTPUT_DIR)\HiiString.obj : $(MAKE_FILE)
+$(OUTPUT_DIR)\HiiString.obj : $(COMMON_DEPS)
+$(OUTPUT_DIR)\HiiString.obj : $(WORKSPACE)MdeModulePkg\Library\UefiHiiLib\HiiString.c
+	"$(CC)" /Foq:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\.\HiiString.obj $(CC_FLAGS) $(INC) q:\MdeModulePkg\Library\UefiHiiLib\HiiString.c
+
+$(OUTPUT_DIR)\HiiLib.obj : $(MAKE_FILE)
+$(OUTPUT_DIR)\HiiLib.obj : $(COMMON_DEPS)
+$(OUTPUT_DIR)\HiiLib.obj : $(WORKSPACE)MdeModulePkg\Library\UefiHiiLib\HiiLib.c
+	"$(CC)" /Foq:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\.\HiiLib.obj $(CC_FLAGS) $(INC) q:\MdeModulePkg\Library\UefiHiiLib\HiiLib.c
+
+$(OUTPUT_DIR)\HiiLanguage.obj : $(MAKE_FILE)
+$(OUTPUT_DIR)\HiiLanguage.obj : $(COMMON_DEPS)
+$(OUTPUT_DIR)\HiiLanguage.obj : $(WORKSPACE)MdeModulePkg\Library\UefiHiiLib\HiiLanguage.c
+	"$(CC)" /Foq:\Build\MyPkg\RELEASE_DEVTLS\X64\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\.\HiiLanguage.obj $(CC_FLAGS) $(INC) q:\MdeModulePkg\Library\UefiHiiLib\HiiLanguage.c
 
 
 

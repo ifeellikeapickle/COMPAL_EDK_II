@@ -4,16 +4,14 @@
 #include <Library/BaseLib.h>
 #include <Library/UefiLib.h>
 
-#include <Library/IoLib.h>
-
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/ShellLib.h>
-#include <Protocol/LoadedImage.h>
-#include <Protocol/EfiShellParameters.h>
+
+#include <Library/IoLib.h>
 
 #include <Library/ECCommandLib.h>
 
 VOID
+EFIAPI
 WaitForIbf (
     IN  UINT8   CommandPort
 )
@@ -31,6 +29,7 @@ WaitForIbf (
 }
 
 VOID
+EFIAPI
 WaitForObf (
     IN  UINT8   CommandPort
 )
@@ -48,6 +47,7 @@ WaitForObf (
 }
 
 BOOLEAN
+EFIAPI
 IsObfFull (
     IN  UINT8   CommandPort
 )
@@ -66,6 +66,40 @@ IsObfFull (
 }
 
 VOID
+EFIAPI
+EepromBankAssign (
+    IN  UINT8   Bank
+)
+{
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, EEPROM_BANK_ASSIGN);
+
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_DATA_PORT, Bank);
+}
+
+UINT8
+EFIAPI
+EepromReadByte (
+    IN  UINT8   Offset
+)
+{
+    UINT8   Data;
+
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, EEPROM_READ_BYTE);
+
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_DATA_PORT, Offset);
+
+    WaitForObf (KBC_COMMAND_PORT);
+    Data = IoRead8 (KBC_DATA_PORT);
+    
+    return Data;
+}
+
+VOID
+EFIAPI
 EcCommandByKbc (
     IN  UINT8   Command,
     IN  UINT8   Data
@@ -79,7 +113,7 @@ EcCommandByKbc (
 
     // Disable Keyboard Interface
     WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, DISABLE_KB_COMMAND);
+    IoWrite8 (KBC_COMMAND_PORT, DISABLE_KB_INTERFACE);
 
     if (Command == 0x41 || Command == 0x52) {
 
@@ -111,23 +145,11 @@ EcCommandByKbc (
             Print (L"Please enter Bank Number between 0 and 6\n");
         } else {
 
-            WaitForIbf (KBC_COMMAND_PORT);
-            IoWrite8 (KBC_COMMAND_PORT, Command);
-
-            WaitForIbf (KBC_COMMAND_PORT);
-            IoWrite8 (KBC_DATA_PORT, Data);
+            EepromBankAssign (Data);
 
             for (Index = 0x00; Index <= 0xFF; Index++) {
 
-                WaitForIbf (KBC_COMMAND_PORT);
-                IoWrite8 (KBC_COMMAND_PORT, EEPROM_READ_COMMAND);
-
-                WaitForIbf (KBC_COMMAND_PORT);
-                IoWrite8 (KBC_DATA_PORT, Index);
-
-                WaitForObf (KBC_COMMAND_PORT);
-                OutputData = IoRead8 (KBC_DATA_PORT);
-                RegisterTable[Index] = OutputData;
+                RegisterTable[Index] = EepromReadByte (Index);
 
                 if (Index == 0xFF) {
                     break;
@@ -142,10 +164,11 @@ EcCommandByKbc (
 
     // Enable Keyboard Interface
     WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, ENABLE_KB_COMMAND);
+    IoWrite8 (KBC_COMMAND_PORT, ENABLE_KB_INTERFACE);
 }
 
 VOID
+EFIAPI
 EcCommand (
     IN  UINTN       Argc,
 	IN  CHAR16      **Argv
@@ -172,6 +195,7 @@ EcCommand (
 }
 
 VOID
+EFIAPI
 FormatRegisterTable256 (
     IN  UINT8   Table[]
 )
@@ -210,53 +234,4 @@ FormatRegisterTable256 (
             break;
         }
     }
-}
-
-EFI_STATUS
-GetInputParameters (
-    IN  EFI_HANDLE        ImageHandle,
-    IN  EFI_SYSTEM_TABLE  *SystemTable
-)
-{
-    EFI_SHELL_PARAMETERS_PROTOCOL *gEfiShellParametersProtocol;
-
-    UINTN			Argc;
-	CHAR16			**Argv;
-
-    EFI_STATUS      Status;
-
-    EFI_GUID  mEfiShellParametersProtocolGuid = EFI_SHELL_PARAMETERS_PROTOCOL_GUID;
-
-	gEfiShellParametersProtocol = NULL;
-
-	if (gEfiShellParametersProtocol != NULL) {
-		Print (L"gEfiShellParametersProtocol is initialized\n");
-        Argc = gEfiShellParametersProtocol->Argc;
-        Argv = gEfiShellParametersProtocol->Argv;
-
-	} else {
-        // check out input parameters from command line using UEFI Shell 2.0
-		Status = gBS->OpenProtocol(
-            ImageHandle,
-            &mEfiShellParametersProtocolGuid,
-            (VOID **)&gEfiShellParametersProtocol,
-            ImageHandle,
-            NULL,
-            EFI_OPEN_PROTOCOL_GET_PROTOCOL
-        ); 
-		if (EFI_ERROR(Status)) {
-		      Print(L"\nSorry, Getting Shell parameters did NOT work or in the EFI Shell 1.0: \n");
-			  return EFI_UNSUPPORTED;
-		} else {
-		    Argc = gEfiShellParametersProtocol->Argc;
-			Argv = gEfiShellParametersProtocol->Argv;
-		}
-	}
-    //
-    // use shell 2.0 interface
-    //
-
-    EcCommand (Argc, Argv);
-   
-	return EFI_SUCCESS;
 }

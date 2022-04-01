@@ -37,8 +37,8 @@ MODULE_RELATIVE_DIR = MyPkg\Application\Test
 PACKAGE_RELATIVE_DIR = Application\Test
 MODULE_DIR = $(WORKSPACE)\MyPkg\Application\Test
 
-MODULE_ENTRY_POINT = UefiMain
-ARCH_ENTRY_POINT = UefiMain
+MODULE_ENTRY_POINT = ShellCEntryLib
+ARCH_ENTRY_POINT = ShellCEntryLib
 IMAGE_ENTRY_POINT = _ModuleEntryPoint
 
 INF_VERSION = 0x0001001B
@@ -195,18 +195,22 @@ OBJECT_FILES =  \
     $(OUTPUT_DIR)\AutoGen.obj
 
 STATIC_LIBRARY_FILES =  \
-    $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\OUTPUT\BaseMemoryLib.lib \
     $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\OUTPUT\BasePcdLibNull.lib \
     $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\OUTPUT\BaseDebugLibNull.lib \
+    $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\OUTPUT\BaseMemoryLib.lib \
     $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\OUTPUT\BaseLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\OUTPUT\UefiBootServicesTableLib.lib \
-    $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\OUTPUT\UefiMemoryAllocationLib.lib \
     $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\OUTPUT\BasePrintLib.lib \
+    $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\OUTPUT\UefiMemoryAllocationLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib\OUTPUT\UefiRuntimeServicesTableLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\OUTPUT\UefiDevicePathLib.lib \
-    $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\OUTPUT\UefiApplicationEntryPoint.lib \
+    $(BIN_DIR)\MdeModulePkg\Library\UefiHiiServicesLib\UefiHiiServicesLib\OUTPUT\UefiHiiServicesLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\OUTPUT\UefiLib.lib \
+    $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\OUTPUT\UefiApplicationEntryPoint.lib \
+    $(BIN_DIR)\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\OUTPUT\UefiHiiLib.lib \
     $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\OUTPUT\BaseIoLibIntrinsic.lib \
+    $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\OUTPUT\UefiShellCEntryLib.lib \
+    $(BIN_DIR)\ShellPkg\Library\UefiShellLib\UefiShellLib\OUTPUT\UefiShellLib.lib \
     $(OUTPUT_DIR)\Test.lib
 
 INC =  \
@@ -215,6 +219,8 @@ INC =  \
     /I$(WORKSPACE)MdePkg \
     /I$(WORKSPACE)MdePkg\Include \
     /I$(WORKSPACE)MdePkg\Include\X64 \
+    /I$(WORKSPACE)MdeModulePkg \
+    /I$(WORKSPACE)MdeModulePkg\Include \
     /I$(WORKSPACE)ShellPkg \
     /I$(WORKSPACE)ShellPkg\Include
 
@@ -227,9 +233,11 @@ COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics2.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextInEx.h \
               $(WORKSPACE)MdePkg\Include\Guid\HiiFormMapMethodGuid.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\GraphicsOutput.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextIn.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiPxe.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShellEnvironment2.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShellParameters.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverBinding.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Bluetooth.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiSpec.h \
@@ -239,22 +247,29 @@ COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
               $(WORKSPACE)MdePkg\Include\Base.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextOut.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi10.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShell.h \
               $(DEBUG_DIR)\AutoGen.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\LoadedImage.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi51.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi20.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi50.h \
+              $(WORKSPACE)MdePkg\Include\Guid\FileInfo.h \
+              $(WORKSPACE)ShellPkg\Include\Protocol\EfiShellInterface.h \
               $(WORKSPACE)MdePkg\Include\Uefi.h \
               $(WORKSPACE)MdePkg\Include\Guid\WinCertificate.h \
               $(WORKSPACE)MdePkg\Include\Protocol\ComponentName.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiGpt.h \
-              $(WORKSPACE)MdePkg\Include\X64\ProcessorBind.h \
+              $(WORKSPACE)ShellPkg\Include\Library\ShellLib.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiMultiPhase.h \
+              $(WORKSPACE)ShellPkg\Include\ShellBase.h \
               $(WORKSPACE)MdePkg\Include\Guid\PcAnsi.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics.h \
               $(WORKSPACE)MdePkg\Include\Library\UefiLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\SimpleFileSystem.h \
               $(WORKSPACE)MdePkg\Include\Library\IoLib.h \
+              $(WORKSPACE)MdePkg\Include\X64\ProcessorBind.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\AcpiAml.h \
-              $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextIn.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\GraphicsOutput.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi40.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration2.h \
               $(WORKSPACE)MdePkg\Include\Protocol\ComponentName2.h \
@@ -328,18 +343,22 @@ strdefs:
 # GenLibsTarget
 #
 gen_libs:
-	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile
-	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\Makefile
-	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdeModulePkg\Library\UefiHiiServicesLib\UefiHiiServicesLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\ShellPkg\Library\UefiShellLib\UefiShellLib\Makefile
 	@cd $(MODULE_BUILD_DIR)
 
 #
@@ -427,17 +446,21 @@ cleanall:
 # clean all dependent libraries built
 #
 cleanlib:
-	-@if exist $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile cleanall
+	-@if exist $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile cleanall
-	-@if exist $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePrintLib\BasePrintLib\Makefile cleanall
+	-@if exist $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\Makefile cleanall
-	-@if exist $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile cleanall
+	-@if exist $(BIN_DIR)\MdeModulePkg\Library\UefiHiiServicesLib\UefiHiiServicesLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdeModulePkg\Library\UefiHiiServicesLib\UefiHiiServicesLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\Makefile cleanall
+	-@if exist $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile cleanall
+	-@if exist $(BIN_DIR)\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdeModulePkg\Library\UefiHiiLib\UefiHiiLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile cleanall
+	-@if exist $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\Makefile cleanall
+	-@if exist $(BIN_DIR)\ShellPkg\Library\UefiShellLib\UefiShellLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\ShellPkg\Library\UefiShellLib\UefiShellLib\Makefile cleanall
 	@cd $(MODULE_BUILD_DIR)
 

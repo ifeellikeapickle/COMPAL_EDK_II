@@ -37,14 +37,21 @@ extern EFI_GUID gEfiPersistentVirtualCdGuid;
 extern EFI_GUID gEfiEventReadyToBootGuid;
 extern EFI_GUID gEfiEventLegacyBootGuid;
 extern EFI_GUID gEfiGlobalVariableGuid;
+extern EFI_GUID gEfiFileInfoGuid;
+extern EFI_GUID gEfiShellEnvironment2ExtGuid;
+extern EFI_GUID gEfiShellPkgTokenSpaceGuid;
 
 // Protocols
 extern EFI_GUID gEfiDevicePathProtocolGuid;
 extern EFI_GUID gEfiDebugPortProtocolGuid;
+extern EFI_GUID gEfiHiiFontProtocolGuid;
+extern EFI_GUID gEfiHiiStringProtocolGuid;
+extern EFI_GUID gEfiHiiImageProtocolGuid;
+extern EFI_GUID gEfiHiiDatabaseProtocolGuid;
+extern EFI_GUID gEfiHiiConfigRoutingProtocolGuid;
 extern EFI_GUID gEfiDriverBindingProtocolGuid;
 extern EFI_GUID gEfiSimpleTextOutProtocolGuid;
 extern EFI_GUID gEfiGraphicsOutputProtocolGuid;
-extern EFI_GUID gEfiHiiFontProtocolGuid;
 extern EFI_GUID gEfiUgaDrawProtocolGuid;
 extern EFI_GUID gEfiComponentNameProtocolGuid;
 extern EFI_GUID gEfiComponentName2ProtocolGuid;
@@ -52,13 +59,19 @@ extern EFI_GUID gEfiDriverConfigurationProtocolGuid;
 extern EFI_GUID gEfiDriverConfiguration2ProtocolGuid;
 extern EFI_GUID gEfiDriverDiagnosticsProtocolGuid;
 extern EFI_GUID gEfiDriverDiagnostics2ProtocolGuid;
+extern EFI_GUID gEfiFormBrowser2ProtocolGuid;
+extern EFI_GUID gEfiShellParametersProtocolGuid;
+extern EFI_GUID gEfiShellInterfaceGuid;
+extern EFI_GUID gEfiSimpleFileSystemProtocolGuid;
+extern EFI_GUID gEfiShellProtocolGuid;
+extern EFI_GUID gEfiShellEnvironment2Guid;
 
 // Definition of PCDs used in libraries is in AutoGen.c
 
 
 EFI_STATUS
 EFIAPI
-UefiMain (
+ShellCEntryLib (
   IN EFI_HANDLE        ImageHandle,
   IN EFI_SYSTEM_TABLE  *SystemTable
   );

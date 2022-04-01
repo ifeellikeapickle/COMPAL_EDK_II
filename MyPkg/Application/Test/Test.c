@@ -4,22 +4,23 @@
 #include <Library/BaseLib.h>
 #include <Library/UefiLib.h>
 
+#include <Library/ShellLib.h>
+
 #include <Library/IoLib.h>
 
 EFI_STATUS
-UefiMain (
-    IN EFI_HANDLE        ImageHandle,
-    IN EFI_SYSTEM_TABLE  *SystemTable
+EFIAPI
+ShellAppMain (
+    IN  UINTN   Argc,
+	IN  CHAR16  **Argv
 )
 {
-   UINT8    A;
-   UINT8    B;
-   UINT8    C;
-   UINT8    D;
+    UINT8   i;
+    Print (L"Argv = %d\n", Argc);
 
-   A = 0x0F;
-   B = 0xF0;
-   C = A + B;
-   D = A | B;
-   return EFI_SUCCESS;
+	for (i = 0; i < Argc; i++)
+ 	{
+        Print (L"Arg[%d] = %s\n", i, *(Argv + i));
+	}
+	return EFI_SUCCESS;
 }

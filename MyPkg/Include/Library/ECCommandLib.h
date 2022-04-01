@@ -10,9 +10,10 @@
 #define COMPAL_EC_DATA_PORT     0x68
 #define COMPAL_EC_COMMAND_PORT  0x6C
 
-#define DISABLE_KB_COMMAND      0xAD
-#define ENABLE_KB_COMMAND       0xAE
-#define EEPROM_READ_COMMAND     0x4E
+#define DISABLE_KB_INTERFACE    0xAD
+#define ENABLE_KB_INTERFACE     0xAE
+#define EEPROM_BANK_ASSIGN      0x42
+#define EEPROM_READ_BYTE        0x4E
 
 typedef struct {
     UINT8                   InputCommand;
@@ -23,41 +24,53 @@ typedef struct {
 } EC_COMMAND_STRUCT;
 
 VOID
+EFIAPI
 WaitForIbf (
     IN  UINT8               CommandPort
 );
 
 VOID
+EFIAPI
 WaitForObf (
     IN  UINT8               CommandPort
 );
 
 BOOLEAN
+EFIAPI
 IsObfFull (
     IN  UINT8               CommandPort
 );
 
 VOID
+EFIAPI
+EepromBankAssign (
+    IN  UINT8   Bank
+);
+
+UINT8
+EFIAPI
+EepromReadByte (
+    IN  UINT8   Offset
+);
+
+VOID
+EFIAPI
 EcCommandByKbc (
     IN  UINT8               Command,
     IN  UINT8               Data
 );
 
 VOID
+EFIAPI
 EcCommand (
     IN  UINTN               Argc,
 	IN  CHAR16              **Argv
 );
 
 VOID
+EFIAPI
 FormatRegisterTable256 (
     IN  UINT8   Table[256]
-);
-
-EFI_STATUS
-GetInputParameters (
-    IN  EFI_HANDLE          ImageHandle,
-    IN  EFI_SYSTEM_TABLE    *SystemTable
 );
 
 #endif
