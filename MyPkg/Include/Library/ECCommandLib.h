@@ -12,7 +12,10 @@
 
 #define DISABLE_KB_INTERFACE    0xAD
 #define ENABLE_KB_INTERFACE     0xAE
-#define EEPROM_BANK_ASSIGN      0x42
+#define COMPANY_ID_COMMAND      0x41
+#define PROJECT_NAME_COMMAND    0x52
+#define EEPROM_ASSIGN_BANK      0x42
+#define EEPROM_WRITE_BYTE       0x4D
 #define EEPROM_READ_BYTE        0x4E
 
 typedef struct {
@@ -43,7 +46,19 @@ IsObfFull (
 
 VOID
 EFIAPI
-EepromBankAssign (
+DisableKeyboardInterface (
+    VOID
+);
+
+VOID
+EFIAPI
+EnableKeyboardInterface (
+    VOID
+);
+
+VOID
+EFIAPI
+EepromAssignBank (
     IN  UINT8   Bank
 );
 
@@ -51,13 +66,6 @@ UINT8
 EFIAPI
 EepromReadByte (
     IN  UINT8   Offset
-);
-
-VOID
-EFIAPI
-EcCommandByKbc (
-    IN  UINT8               Command,
-    IN  UINT8               Data
 );
 
 VOID

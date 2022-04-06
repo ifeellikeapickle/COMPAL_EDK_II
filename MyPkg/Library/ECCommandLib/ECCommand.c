@@ -67,12 +67,32 @@ IsObfFull (
 
 VOID
 EFIAPI
-EepromBankAssign (
+DisableKeyboardInterface (
+    VOID
+)
+{
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, DISABLE_KB_INTERFACE);
+}
+
+VOID
+EFIAPI
+EnableKeyboardInterface (
+    VOID
+)
+{
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, ENABLE_KB_INTERFACE);
+}
+
+VOID
+EFIAPI
+EepromAssignBank (
     IN  UINT8   Bank
 )
 {
     WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, EEPROM_BANK_ASSIGN);
+    IoWrite8 (KBC_COMMAND_PORT, EEPROM_ASSIGN_BANK);
 
     WaitForIbf (KBC_COMMAND_PORT);
     IoWrite8 (KBC_DATA_PORT, Bank);
@@ -98,11 +118,14 @@ EepromReadByte (
     return Data;
 }
 
+/*
 VOID
 EFIAPI
 EcCommandByKbc (
     IN  UINT8   Command,
-    IN  UINT8   Data
+    IN  UINT8   Data,
+    IN  UINT8   Offset,     OPTIONAL
+    IN  UINT8   WriteData   OPTIONAL
 )
 {
     UINT8   OutputArray[10];
@@ -111,9 +134,7 @@ EcCommandByKbc (
     UINT8   Index = 0;
     UINT8   RegisterTable[256];
 
-    // Disable Keyboard Interface
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, DISABLE_KB_INTERFACE);
+    DisableKeyboardInterface ();
 
     if (Command == 0x41 || Command == 0x52) {
 
@@ -145,7 +166,7 @@ EcCommandByKbc (
             Print (L"Please enter Bank Number between 0 and 6\n");
         } else {
 
-            EepromBankAssign (Data);
+            EepromAssignBank (Data);
 
             for (Index = 0x00; Index <= 0xFF; Index++) {
 
@@ -162,10 +183,9 @@ EcCommandByKbc (
         Print (L"Command or data is not defined\n");
     }
 
-    // Enable Keyboard Interface
-    WaitForIbf (KBC_COMMAND_PORT);
-    IoWrite8 (KBC_COMMAND_PORT, ENABLE_KB_INTERFACE);
+    EnableKeyboardInterface ();
 }
+*/
 
 VOID
 EFIAPI
@@ -175,22 +195,70 @@ EcCommand (
 )
 {
     EC_COMMAND_STRUCT   *EcCommandStructure;
-    UINT8               InputCommand;
-    UINT8               InputData[10];
+    UINT8               Command;
+    UINT8               Data[10];
+    UINT8               DataLength;
+    UINT8               OutputData;
+    UINT8               OutputArray[10];
+    UINT8               OutputLength;
+    UINT8               EepromTable[256];
+    UINT8               Index;
 
     EcCommandStructure = NULL;
 
-    if (Argc < 3 || Argc > 3) {
+    if (Argc < 3 || Argc > 5) {
         Print (L"     [File Name] [Command] [Data]\ne.g.   ECCMD.efi        41     A1\n");
-    } else if (Argc == 3) {
+    } else {
+        Command = (UINT8)StrHexToUintn(Argv[1]);
+        for (Index = 0; Index < Argc - 2; Index++) {
+            Data[Index] = (UINT8)StrHexToUintn(Argv[Index + 2]);
+        }
+        DataLength = (UINT8)(Argc - 2);
 
-        EcCommandStructure->InputCommand = (UINT8)StrHexToUintn(Argv[1]);
-        InputCommand = EcCommandStructure->InputCommand;
+        DisableKeyboardInterface ();
+    
+        if (Command == COMPANY_ID_COMMAND || Command == PROJECT_NAME_COMMAND) {
 
-        EcCommandStructure->InputData[0] = (UINT8)StrHexToUintn(Argv[2]);
-        InputData[0] = EcCommandStructure->InputData[0];
+            WaitForIbf (KBC_COMMAND_PORT);
+            IoWrite8 (KBC_COMMAND_PORT, Command);
 
-        EcCommandByKbc (InputCommand, InputData[0]);
+            WaitForIbf (KBC_COMMAND_PORT);
+            IoWrite8 (KBC_DATA_PORT, Data[0]);
+
+            Index = 0;
+            WaitForObf (KBC_COMMAND_PORT);
+            while (IsObfFull (KBC_COMMAND_PORT)) {
+                OutputData = IoRead8 (KBC_DATA_PORT);
+                OutputArray[Index] = OutputData;
+                Index++;
+                WaitForObf (KBC_COMMAND_PORT);
+            }
+            OutputLength = Index;
+
+            for (Index = 0; Index < OutputLength; Index++) {
+                Print (L" %02x", OutputArray[Index]);
+                Print (L" (%c)\n", OutputArray[Index]);
+            }
+            Print (L"%a\n", OutputArray);
+
+        } else if (Command == EEPROM_ASSIGN_BANK) {
+            if (Data[0] < 0 || Data[0] > 6) {
+                Print (L"Please enter Bank Number between 0 and 6\n");
+            } else if (DataLength == 1) {
+                EepromAssignBank (Data[0]);
+                for (Index = 0x00; Index <= 0xFF; Index++) {
+                    EepromTable[Index] = EepromReadByte (Index);
+                    if (Index == 0xFF) {
+                        break;
+                    }
+                }
+                FormatRegisterTable256 (EepromTable);
+            }
+        } else {
+            
+        }
+
+        EnableKeyboardInterface ();
     }
 }
 
