@@ -39,7 +39,7 @@ UefiMain(
         Print (L"ACPI RSDP Address: [0x%x]\n", RSDP);
 
         for (Index = 0; Index < 8; Index++) {
-            RsdpSignature[Index] = (UINT16)(RSDP->Signature >> (Index * 8) & 0xFF);
+            RsdpSignature[Index] = (RSDP->Signature >> (Index * 8) & 0xFF);
         }
 
         Print (L"   RSDP Signature: %s\n", RsdpSignature);
@@ -52,7 +52,7 @@ UefiMain(
             XSDT = (EFI_ACPI_DESCRIPTION_HEADER *)(RSDP->XsdtAddress);
 
             for (Index = 0; Index < 4; Index++) {
-                XsdtSignature[Index] = (UINT16)(XSDT->Signature >> (Index * 8) & 0xFF);
+                XsdtSignature[Index] = (XSDT->Signature >> (Index * 8) & 0xFF);
             }
             Print (L"   XSDT Signature: %s\n", XsdtSignature);
         }
