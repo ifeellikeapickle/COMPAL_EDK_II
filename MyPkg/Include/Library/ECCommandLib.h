@@ -1,6 +1,8 @@
 #ifndef __EC_COMMAND_LIB_H__
 #define __EC_COMMAND_LIB_H__
 
+#define REGISTER_MAX_VALUE      0xFF
+
 #define KBC_DATA_PORT           0x60
 #define KBC_COMMAND_PORT        0x64
 

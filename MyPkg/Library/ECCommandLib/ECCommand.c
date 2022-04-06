@@ -104,7 +104,7 @@ EepromReadByte (
     IN  UINT8   Offset
 )
 {
-    UINT8   Data;
+    UINT8   OutputData;
 
     WaitForIbf (KBC_COMMAND_PORT);
     IoWrite8 (KBC_COMMAND_PORT, EEPROM_READ_BYTE);
@@ -113,79 +113,34 @@ EepromReadByte (
     IoWrite8 (KBC_DATA_PORT, Offset);
 
     WaitForObf (KBC_COMMAND_PORT);
-    Data = IoRead8 (KBC_DATA_PORT);
+    OutputData = IoRead8 (KBC_DATA_PORT);
     
-    return Data;
+    return OutputData;
 }
 
-/*
-VOID
+UINT8
 EFIAPI
-EcCommandByKbc (
-    IN  UINT8   Command,
-    IN  UINT8   Data,
-    IN  UINT8   Offset,     OPTIONAL
-    IN  UINT8   WriteData   OPTIONAL
+EepromWriteByte (
+    IN  UINT8   Offset,
+    IN  UINT8   Data
 )
 {
-    UINT8   OutputArray[10];
     UINT8   OutputData;
-    UINT8   OutputLength;
-    UINT8   Index = 0;
-    UINT8   RegisterTable[256];
 
-    DisableKeyboardInterface ();
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_COMMAND_PORT, EEPROM_WRITE_BYTE);
 
-    if (Command == 0x41 || Command == 0x52) {
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_DATA_PORT, Offset);
 
-        WaitForIbf (KBC_COMMAND_PORT);
-        IoWrite8 (KBC_COMMAND_PORT, Command);
+    WaitForIbf (KBC_COMMAND_PORT);
+    IoWrite8 (KBC_DATA_PORT, Data);
 
-        WaitForIbf (KBC_COMMAND_PORT);
-        IoWrite8 (KBC_DATA_PORT, Data);
+    WaitForObf (KBC_COMMAND_PORT);
+    OutputData = IoRead8 (KBC_DATA_PORT);
 
-        Index = 0;
-        WaitForObf (KBC_COMMAND_PORT);
-        while (IsObfFull (KBC_COMMAND_PORT)) {
-            OutputData = IoRead8 (KBC_DATA_PORT);
-            OutputArray[Index] = OutputData;
-            Index++;
-            WaitForObf (KBC_COMMAND_PORT);
-        }
-        OutputLength = Index;
-
-        for (Index = 0; Index < OutputLength; Index++) {
-            Print (L" %02x", OutputArray[Index]);
-            Print (L" (%c)\n", OutputArray[Index]);
-        }
-        Print (L"%a\n", OutputArray);
-
-    } else if (Command == 0x42) {
-
-        if (Data < 0x00 || Data > 0x06) {
-            Print (L"Please enter Bank Number between 0 and 6\n");
-        } else {
-
-            EepromAssignBank (Data);
-
-            for (Index = 0x00; Index <= 0xFF; Index++) {
-
-                RegisterTable[Index] = EepromReadByte (Index);
-
-                if (Index == 0xFF) {
-                    break;
-                }
-            }
-
-            FormatRegisterTable256 (RegisterTable);
-        }
-    } else {
-        Print (L"Command or data is not defined\n");
-    }
-
-    EnableKeyboardInterface ();
+    return OutputData;
 }
-*/
 
 VOID
 EFIAPI
@@ -253,9 +208,20 @@ EcCommand (
                     }
                 }
                 FormatRegisterTable256 (EepromTable);
+            } else if (DataLength == 3 && Data[1] <= REGISTER_MAX_VALUE && Data[2] <= REGISTER_MAX_VALUE) {
+                EepromAssignBank (Data[0]);
+                OutputData = EepromWriteByte (Data[1], Data[2]);
+                while (OutputData == 0xFE) {
+                    OutputData = EepromWriteByte (Data[1], Data[2]);
+                }
+                if (OutputData == 0x00) {
+                    Print (L"Write Byte to EEPROM COMPLETE\n");
+                } else {
+                    Print (L"Write Byte to EEPROM FAILED\n");
+                }
+            } else {
+                Print (L"     [File Name] [Command] [Bank] [Offset] [Data]\ne.g.   ECCMD.efi        42     00       04     35\n");
             }
-        } else {
-            
         }
 
         EnableKeyboardInterface ();
