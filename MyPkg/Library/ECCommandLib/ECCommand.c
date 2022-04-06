@@ -222,6 +222,8 @@ EcCommand (
             } else {
                 Print (L"     [File Name] [Command] [Bank] [Offset] [Data]\ne.g.   ECCMD.efi        42     00       04     35\n");
             }
+        } else {
+            Print (L"Command or Data is not defined\n");
         }
 
         EnableKeyboardInterface ();
