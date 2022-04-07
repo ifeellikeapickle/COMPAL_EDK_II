@@ -22,21 +22,23 @@ UefiMain(
 )
 {
     EFI_STATUS                                      Status;
+    UINTN                                           Index;
+    UINTN                                           EntryCount;
     UINT16                                          RsdpSignature[20];
     UINT16                                          RsdpOemId[20];
     UINT16                                          XsdtSignature[20];
     UINT64                                          *EntryPtr;
-    EFI_ACPI_6_0_ROOT_SYSTEM_DESCRIPTION_POINTER    *Rsdp;
     EFI_ACPI_DESCRIPTION_HEADER                     *Xsdt;
-    //EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE       *Fadt;
     //EFI_ACPI_DESCRIPTION_HEADER                     *Dsdt;
-    UINTN                                           Index;
-    UINTN                                           EntryCount;
+    EFI_ACPI_DESCRIPTION_HEADER                     *Entry;
+    EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE       *Fadt;
+    EFI_ACPI_6_0_ROOT_SYSTEM_DESCRIPTION_POINTER    *Rsdp;
+    
 
     Status = EfiGetSystemConfigurationTable (&gEfiAcpi20TableGuid, (VOID **)&Rsdp);
 
     if (Rsdp == NULL) {
-        Print (L"Get ACPI RSDP error.\n");
+        Print (L"RSDP not found!\n");
         Status = EFI_NOT_FOUND;
     } else {
         Print (L"Found ACPI RSDP: \n");
@@ -69,16 +71,19 @@ UefiMain(
             Print (L"      XSDT Length: %d\n", Xsdt->Length);
 
             EntryCount = (Xsdt->Length - sizeof (EFI_ACPI_DESCRIPTION_HEADER)) / sizeof (UINT64);
-            Print (L"   size of Header: %d\n", sizeof (EFI_ACPI_DESCRIPTION_HEADER));
-            Print (L"   size of UINT64: %d\n", sizeof (UINT64));
             Print (L" XSDT Entry Count: %d\n", EntryCount);
 
-            EntryPtr = (UINT64 *)(Xsdt + 1);
-            /*
+            EntryPtr = (UINT64 *)(Xsdt + 1); // Skip the header?
+            
             for (Index = 0; Index < EntryCount; Index++, EntryPtr++) {
-                
+                Entry = (EFI_ACPI_DESCRIPTION_HEADER *)(*EntryPtr);
+                //Print (L"  Entry Signature: 0x%x\n", Entry->Signature);
+
+                if (Entry->Signature == 0x50434146) {
+                    Fadt = (EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE *)Entry;
+                    Print (L"     DSDT Address: 0x%x\n", Fadt->Dsdt);
+                }
             }
-            */
         }
     }
 
