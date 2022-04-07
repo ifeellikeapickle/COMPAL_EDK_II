@@ -231,6 +231,7 @@ COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
               $(WORKSPACE)MdePkg\Include\Protocol\GraphicsOutput.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverConfiguration.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiPxe.h \
+              $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverBinding.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\Bluetooth.h \
               $(WORKSPACE)MdePkg\Include\Uefi\UefiSpec.h \
