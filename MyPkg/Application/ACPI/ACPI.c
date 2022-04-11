@@ -23,11 +23,24 @@ GetOpRegion (
 )
 {
     AML_OP_REGION_32_8              *OpRegion;
+    //UINT16                          NameString[20];
+    //UINTN                           Index;
 
     for (OpRegion  = (AML_OP_REGION_32_8 *) (Table + 1);
         OpRegion <= (AML_OP_REGION_32_8 *) ((UINT8 *) Table + Table->Length);
         OpRegion  = (AML_OP_REGION_32_8 *) ((UINT8 *) OpRegion + 1)) {
 
+        /*
+        if (OpRegion->RegionSpace == 0x00) {
+            ZeroMem (NameString, sizeof(NameString));
+            for (Index = 0; Index < 4; Index++) {
+                NameString[Index] = OpRegion->NameString >> (Index * 8) & 0xFF;
+            }
+            Print (L"%s\n", NameString);
+        }
+        */
+
+        /*
         if (OpRegion->NameString == 0x564E4153) {
             Print (L"SANV found\n");
             Print (L" Region Space: %02x\n", OpRegion->RegionSpace);
@@ -43,6 +56,7 @@ GetOpRegion (
             Print (L"Region Offset: %08x\n", OpRegion->RegionOffset);
             Print (L"Region Length: %d\n", OpRegion->RegionLen);
         }
+        */
     }
 }
 
