@@ -11,9 +11,72 @@
 // ACPI
 #include <Guid/Acpi.h>
 #include <IndustryStandard/Acpi.h>
+#include <IndustryStandard/AcpiAml.h>
 
 //#include <Protocol/SimpleFileSystem.h>
 #include "ACPI.h"
+
+VOID
+EFIAPI
+GetOpRegion (
+    EFI_ACPI_DESCRIPTION_HEADER     *Table
+)
+{
+    AML_OP_REGION_32_8              *OpRegion;
+
+    for (OpRegion  = (AML_OP_REGION_32_8 *) (Table + 1);
+        OpRegion <= (AML_OP_REGION_32_8 *) ((UINT8 *) Table + Table->Length);
+        OpRegion  = (AML_OP_REGION_32_8 *) ((UINT8 *) OpRegion + 1)) {
+
+        if (OpRegion->NameString == 0x564E4153) {
+            Print (L"SANV found\n");
+            Print (L" Region Space: %02x\n", OpRegion->RegionSpace);
+            Print (L" DWord Prefix: %02x\n", OpRegion->DWordPrefix);
+            Print (L"  Byte Prefix: %02x\n", OpRegion->BytePrefix);
+            Print (L"Region Offset: %08x\n", OpRegion->RegionOffset);
+            Print (L"Region Length: %d\n", OpRegion->RegionLen);
+        } else if (OpRegion->NameString == 0x53564E47) {
+            Print (L"GNVS found\n");
+            Print (L" Region Space: %02x\n", OpRegion->RegionSpace);
+            Print (L" DWord Prefix: %02x\n", OpRegion->DWordPrefix);
+            Print (L"  Byte Prefix: %02x\n", OpRegion->BytePrefix);
+            Print (L"Region Offset: %08x\n", OpRegion->RegionOffset);
+            Print (L"Region Length: %d\n", OpRegion->RegionLen);
+        }
+    }
+}
+
+EFI_STATUS
+EFIAPI
+PrintGuid (
+    IN  EFI_GUID    *Guid
+)
+{
+    EFI_STATUS  Status;
+
+    if (Guid == NULL) {
+        Print(L"GUID is NULL!\n");
+        Status = EFI_INVALID_PARAMETER;
+    } else {
+        Print (
+        L"GUID: %08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x\n",
+        (UINTN)Guid->Data1,
+        (UINTN)Guid->Data2,
+        (UINTN)Guid->Data3,
+        (UINTN)Guid->Data4[0],
+        (UINTN)Guid->Data4[1],
+        (UINTN)Guid->Data4[2],
+        (UINTN)Guid->Data4[3],
+        (UINTN)Guid->Data4[4],
+        (UINTN)Guid->Data4[5],
+        (UINTN)Guid->Data4[6],
+        (UINTN)Guid->Data4[7]
+        );
+        Status = EFI_SUCCESS;
+    }
+
+    return Status;
+}
 
 EFI_STATUS
 UefiMain(
@@ -24,8 +87,8 @@ UefiMain(
     EFI_STATUS                                      Status;
     UINTN                                           Index;
     UINTN                                           EntryCount;
-    UINT8                                           Encoding1;
-    UINT8                                           Encoding2;
+    //UINT8                                           Encoding1;
+    //UINT8                                           Encoding2;
     UINT16                                          RsdpSignature[20];
     UINT16                                          RsdpOemId[20];
     UINT16                                          XsdtSignature[20];
@@ -102,12 +165,7 @@ UefiMain(
                     Print (L"   DSDT Signature: %s\n", DsdtSignature);
                     Print (L"      DSDT Length: %d\n", Dsdt->Length);
 
-                    for (Index = 0; Index < 10; Index++, Dsdt++) {
-                        Encoding1 = (UINTN)Dsdt & 0xFF;
-                        Encoding2 = (UINTN)(Dsdt+1) & 0xFF;
-                        Print (L"E1 = %02x\n", Encoding1);
-                        Print (L"E2 = %02x\n", Encoding2);
-                    }
+                    GetOpRegion (Dsdt);
                     /*
                     for (Index = 0x00; Index < Fadt->Header.Length; Index++, Fadt++) {
                         Register = (UINT64)Fadt & 0xFF;
