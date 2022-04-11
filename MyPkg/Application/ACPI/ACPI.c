@@ -24,12 +24,16 @@ UefiMain(
     EFI_STATUS                                      Status;
     UINTN                                           Index;
     UINTN                                           EntryCount;
+    UINT8                                           Encoding1;
+    UINT8                                           Encoding2;
     UINT16                                          RsdpSignature[20];
     UINT16                                          RsdpOemId[20];
     UINT16                                          XsdtSignature[20];
+    UINT16                                          FadtSignature[20];
+    UINT16                                          DsdtSignature[20];
     UINT64                                          *EntryPtr;
     EFI_ACPI_DESCRIPTION_HEADER                     *Xsdt;
-    //EFI_ACPI_DESCRIPTION_HEADER                     *Dsdt;
+    EFI_ACPI_DESCRIPTION_HEADER                     *Dsdt;
     EFI_ACPI_DESCRIPTION_HEADER                     *Entry;
     EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE       *Fadt;
     EFI_ACPI_6_0_ROOT_SYSTEM_DESCRIPTION_POINTER    *Rsdp;
@@ -41,14 +45,13 @@ UefiMain(
         Print (L"RSDP not found!\n");
         Status = EFI_NOT_FOUND;
     } else {
-        Print (L"Found ACPI RSDP: \n");
         Print (L"     RSDP Address: [0x%x]\n", Rsdp);
 
-        ZeroMem(RsdpSignature, sizeof(RsdpSignature));
+        ZeroMem (RsdpSignature, sizeof(RsdpSignature));
         for (Index = 0; Index < 8; Index++) {
             RsdpSignature[Index] = (Rsdp->Signature >> (Index * 8) & 0xFF);
         }
-        ZeroMem(RsdpOemId, sizeof(RsdpOemId));
+        ZeroMem (RsdpOemId, sizeof(RsdpOemId));
         for (Index = 0; Index < 6; Index++) {
             RsdpOemId[Index] = (Rsdp->OemId[Index] & 0xFF);
         }
@@ -63,7 +66,7 @@ UefiMain(
 
             Xsdt = (EFI_ACPI_DESCRIPTION_HEADER *)(Rsdp->XsdtAddress);
 
-            ZeroMem(XsdtSignature, sizeof(XsdtSignature));
+            ZeroMem (XsdtSignature, sizeof(XsdtSignature));
             for (Index = 0; Index < 4; Index++) {
                 XsdtSignature[Index] = (Xsdt->Signature >> (Index * 8) & 0xFF);
             }
@@ -79,13 +82,44 @@ UefiMain(
                 Entry = (EFI_ACPI_DESCRIPTION_HEADER *)(*EntryPtr);
                 //Print (L"  Entry Signature: 0x%x\n", Entry->Signature);
 
-                if (Entry->Signature == 0x50434146) {
+                if (Entry->Signature == EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE_SIGNATURE) {
                     Fadt = (EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE *)Entry;
-                    Print (L"     DSDT Address: 0x%x\n", Fadt->Dsdt);
+                    Dsdt = (EFI_ACPI_DESCRIPTION_HEADER *)(UINTN)(Fadt->Dsdt);
+
+                    ZeroMem (FadtSignature, sizeof(FadtSignature));
+                    for (Index = 0; Index < 4; Index++) {
+                        FadtSignature[Index] = (Fadt->Header.Signature >> (Index * 8) & 0xFF);
+                    }
+                    ZeroMem (DsdtSignature, sizeof(DsdtSignature));
+                    for (Index = 0; Index < 4; Index++) {
+                        DsdtSignature[Index] = (Dsdt->Signature >> (Index * 8) & 0xFF);
+                    }
+
+                    Print (L"   FADT Signature: %s\n", FadtSignature);
+                    Print (L"      FADT Length: %d\n", Fadt->Header.Length);
+                    Print (L"    FADT Revision: %d\n", Fadt->Header.Revision);
+                    Print (L"     DSDT Address: 0x%x\n", Dsdt);
+                    Print (L"   DSDT Signature: %s\n", DsdtSignature);
+                    Print (L"      DSDT Length: %d\n", Dsdt->Length);
+
+                    for (Index = 0; Index < 10; Index++, Dsdt++) {
+                        Encoding1 = (UINTN)Dsdt & 0xFF;
+                        Encoding2 = (UINTN)(Dsdt+1) & 0xFF;
+                        Print (L"E1 = %02x\n", Encoding1);
+                        Print (L"E2 = %02x\n", Encoding2);
+                    }
+                    /*
+                    for (Index = 0x00; Index < Fadt->Header.Length; Index++, Fadt++) {
+                        Register = (UINT64)Fadt & 0xFF;
+                        Print (L" %02x", Register);
+                        if (Index % 0x10 == 0x0F) {
+                            Print (L"\n");
+                        }
+                    }
+                    */
                 }
             }
         }
     }
-
     return Status;
 }
