@@ -6,16 +6,49 @@
 #include <Library/ShellCEntryLib.h>
 #include <Library/BaseMemoryLib.h>
 
-#include <Library/UefiBootServicesTableLib.h> // gST, gBS
+// gST, gBS
+#include <Library/UefiBootServicesTableLib.h>
 
 // ACPI
 #include <Guid/Acpi.h>
 #include <IndustryStandard/Acpi.h>
 #include <IndustryStandard/AcpiAml.h>
 
-//#include <Protocol/SimpleFileSystem.h>
+#include <Protocol/SimpleFileSystem.h>
+
 #include "ACPI.h"
 
+
+EFI_STATUS
+EFIAPI
+GetOpRegion (
+    EFI_ACPI_DESCRIPTION_HEADER     *Table
+)
+{
+    UINT8                           Encoding1;
+    UINT8                           Encoding2;
+    UINT16                          NameString[20];
+    UINTN                           Index;
+
+    for (Index = 0; Index < Table->Length; Index++, Table++) {
+        Encoding1 = (UINTN)Table & 0xFF;
+        Encoding2 = (UINTN)(Table + 1) & 0xFF;
+        //Print (L"E1 = %lx\n", Encoding1);
+        //Print (L"E2 = %lx\n", Encoding2);
+
+        if (Encoding1 == 0x5B && Encoding2 == 0x80) {
+            NameString[0] = (UINTN)(Table + 2) & 0xFF;
+            NameString[1] = (UINTN)(Table + 3) & 0xFF;
+            NameString[2] = (UINTN)(Table + 4) & 0xFF;
+            NameString[3] = (UINTN)(Table + 5) & 0xFF;
+            Print (L"%s\n", NameString);
+        }
+    }
+
+    return EFI_SUCCESS;
+}
+
+/*
 VOID
 EFIAPI
 GetOpRegion (
@@ -26,29 +59,11 @@ GetOpRegion (
     //UINT16                          NameString[20];
     //UINTN                           Index;
 
-    for (OpRegion  = (AML_OP_REGION_32_8 *) (Table + 1);
-        OpRegion <= (AML_OP_REGION_32_8 *) ((UINT8 *) Table + Table->Length);
-        OpRegion  = (AML_OP_REGION_32_8 *) ((UINT8 *) OpRegion + 1)) {
+    for (OpRegion = (AML_OP_REGION_32_8 *) (Table + 1);
+        OpRegion <= (AML_OP_REGION_32_8 *) ((UINT8 *)Table + Table->Length);
+        OpRegion  = (AML_OP_REGION_32_8 *) ((UINT8 *)OpRegion + 1)) {
 
-        /*
-        if (OpRegion->RegionSpace == 0x00) {
-            ZeroMem (NameString, sizeof(NameString));
-            for (Index = 0; Index < 4; Index++) {
-                NameString[Index] = OpRegion->NameString >> (Index * 8) & 0xFF;
-            }
-            Print (L"%s\n", NameString);
-        }
-        */
-
-        /*
-        if (OpRegion->NameString == 0x564E4153) {
-            Print (L"SANV found\n");
-            Print (L" Region Space: %02x\n", OpRegion->RegionSpace);
-            Print (L" DWord Prefix: %02x\n", OpRegion->DWordPrefix);
-            Print (L"  Byte Prefix: %02x\n", OpRegion->BytePrefix);
-            Print (L"Region Offset: %08x\n", OpRegion->RegionOffset);
-            Print (L"Region Length: %d\n", OpRegion->RegionLen);
-        } else if (OpRegion->NameString == 0x53564E47) {
+        if (OpRegion->NameString == 0x53564E47) {
             Print (L"GNVS found\n");
             Print (L" Region Space: %02x\n", OpRegion->RegionSpace);
             Print (L" DWord Prefix: %02x\n", OpRegion->DWordPrefix);
@@ -56,9 +71,9 @@ GetOpRegion (
             Print (L"Region Offset: %08x\n", OpRegion->RegionOffset);
             Print (L"Region Length: %d\n", OpRegion->RegionLen);
         }
-        */
     }
 }
+*/
 
 EFI_STATUS
 EFIAPI
@@ -90,6 +105,51 @@ PrintGuid (
     }
 
     return Status;
+}
+
+EFI_STATUS
+EFIAPI
+SaveDsdtToFile (
+	CHAR8	*Pointer,
+	UINTN	Length
+)
+{
+    EFI_STATUS          			Status;
+	EFI_FILE_PROTOCOL 				*Root;
+    EFI_FILE_PROTOCOL               *FileHandle = 0;
+	EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *SimpleFileSystem;
+	
+	Status = gBS->LocateProtocol(
+					&gEfiSimpleFileSystemProtocolGuid,
+					NULL,
+					(VOID **)&SimpleFileSystem);
+
+	if (EFI_ERROR(Status)) {
+			Print (L"Cannot find EFI_SIMPLE_FILE_SYSTEM_PROTOCOL\n");
+			return Status;
+	}
+
+	Status = SimpleFileSystem->OpenVolume (SimpleFileSystem, &Root);
+	if (EFI_ERROR(Status)) {
+			Print (L"OpenVolume error\n");
+			return Status;
+	}
+   
+	Status = Root -> Open(Root,
+				&FileHandle,
+				(CHAR16 *) L"dsdt.aml",
+				EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE,
+				0);
+			
+	if (EFI_ERROR(Status) || (FileHandle == 0)) {
+			Print(L"Open error\n");
+			return Status;
+	}
+	Status = FileHandle -> Write (FileHandle, &Length, Pointer);
+	
+	Status  = FileHandle -> Close (FileHandle);
+	
+	return EFI_SUCCESS;
 }
 
 EFI_STATUS
@@ -179,16 +239,7 @@ UefiMain(
                     Print (L"   DSDT Signature: %s\n", DsdtSignature);
                     Print (L"      DSDT Length: %d\n", Dsdt->Length);
 
-                    GetOpRegion (Dsdt);
-                    /*
-                    for (Index = 0x00; Index < Fadt->Header.Length; Index++, Fadt++) {
-                        Register = (UINT64)Fadt & 0xFF;
-                        Print (L" %02x", Register);
-                        if (Index % 0x10 == 0x0F) {
-                            Print (L"\n");
-                        }
-                    }
-                    */
+                    Status = GetOpRegion (Dsdt);
                 }
             }
         }

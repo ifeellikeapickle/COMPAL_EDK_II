@@ -195,9 +195,9 @@ OBJECT_FILES =  \
     $(OUTPUT_DIR)\AutoGen.obj
 
 STATIC_LIBRARY_FILES =  \
-    $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\OUTPUT\BaseMemoryLib.lib \
     $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\OUTPUT\BasePcdLibNull.lib \
     $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\OUTPUT\BaseDebugLibNull.lib \
+    $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\OUTPUT\BaseMemoryLib.lib \
     $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\OUTPUT\BaseLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\OUTPUT\UefiBootServicesTableLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\OUTPUT\UefiMemoryAllocationLib.lib \
@@ -206,6 +206,7 @@ STATIC_LIBRARY_FILES =  \
     $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\OUTPUT\UefiDevicePathLib.lib \
     $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\OUTPUT\UefiApplicationEntryPoint.lib \
     $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\OUTPUT\UefiLib.lib \
+    $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\OUTPUT\UefiShellCEntryLib.lib \
     $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\OUTPUT\BaseIoLibIntrinsic.lib \
     $(OUTPUT_DIR)\ACPI.lib
 
@@ -257,6 +258,7 @@ COMMON_DEPS = $(WORKSPACE)MdePkg\Include\IndustryStandard\Acpi60.h \
               $(WORKSPACE)MdePkg\Include\Guid\PcAnsi.h \
               $(WORKSPACE)MdePkg\Include\Protocol\DriverDiagnostics.h \
               $(WORKSPACE)MdePkg\Include\Library\UefiLib.h \
+              $(WORKSPACE)MdePkg\Include\Protocol\SimpleFileSystem.h \
               $(WORKSPACE)MdePkg\Include\Base.h \
               $(WORKSPACE)MdePkg\Include\IndustryStandard\AcpiAml.h \
               $(WORKSPACE)MdePkg\Include\Protocol\SimpleTextIn.h \
@@ -333,9 +335,9 @@ strdefs:
 # GenLibsTarget
 #
 gen_libs:
-	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile
@@ -344,6 +346,7 @@ gen_libs:
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\Makefile
+	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\Makefile
 	@"$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile
 	@cd $(MODULE_BUILD_DIR)
 
@@ -432,9 +435,9 @@ cleanall:
 # clean all dependent libraries built
 #
 cleanlib:
-	-@if exist $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BasePcdLibNull\BasePcdLibNull\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull\Makefile cleanall
+	-@if exist $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseMemoryLib\BaseMemoryLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseLib\BaseLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib\Makefile cleanall
@@ -443,6 +446,7 @@ cleanlib:
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiDevicePathLib\UefiDevicePathLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiApplicationEntryPoint\UefiApplicationEntryPoint\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\UefiLib\UefiLib\Makefile cleanall
+	-@if exist $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\ShellPkg\Library\UefiShellCEntryLib\UefiShellCEntryLib\Makefile cleanall
 	-@if exist $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile "$(MAKE)" $(MAKE_FLAGS) -f $(BIN_DIR)\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic\Makefile cleanall
 	@cd $(MODULE_BUILD_DIR)
 

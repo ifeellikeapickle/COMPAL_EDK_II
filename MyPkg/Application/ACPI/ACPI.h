@@ -8,7 +8,7 @@ typedef struct {
   UINT8                  RegionLen;
 } AML_OP_REGION_32_8;
 
-VOID
+EFI_STATUS
 EFIAPI
 GetOpRegion (
     EFI_ACPI_DESCRIPTION_HEADER    *Table
@@ -18,4 +18,11 @@ EFI_STATUS
 EFIAPI
 PrintGuid (
     IN  EFI_GUID    *Guid
+);
+
+EFI_STATUS
+EFIAPI
+SaveDSDTToFile (
+	CHAR8	*Pointer,
+	UINTN	Length
 );

@@ -13,6 +13,7 @@
 
 [Packages.X64]
   MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
 
 [Binaries.X64]
   PE32|ACPI.efi
@@ -20,6 +21,8 @@
 [PatchPcd.X64]
 
 [Protocols.X64]
+  gEfiSimpleFileSystemProtocolGuid
+
   ## SOMETIMES_CONSUMES
   gEfiDevicePathProtocolGuid
 
@@ -58,6 +61,12 @@
 
   ## SOMETIMES_PRODUCES # User chooses to produce it
   gEfiDriverDiagnostics2ProtocolGuid
+
+  ## CONSUMES
+  gEfiShellParametersProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiShellInterfaceGuid
 
 
 [Ppis.X64]
@@ -109,9 +118,9 @@
 
 [LibraryClasses.X64]
 ## @LIB_INSTANCES
-#  MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
 #  MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
 #  MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+#  MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
 #  MdePkg/Library/BaseLib/BaseLib.inf
 #  MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
 #  MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
@@ -120,6 +129,7 @@
 #  MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
 #  MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
 #  MdePkg/Library/UefiLib/UefiLib.inf
+#  ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
 #  MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
 
 [Depex.X64]

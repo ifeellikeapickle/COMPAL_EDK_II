@@ -40,6 +40,7 @@ extern EFI_GUID gEfiEventLegacyBootGuid;
 extern EFI_GUID gEfiGlobalVariableGuid;
 
 // Protocols
+extern EFI_GUID gEfiSimpleFileSystemProtocolGuid;
 extern EFI_GUID gEfiDevicePathProtocolGuid;
 extern EFI_GUID gEfiDebugPortProtocolGuid;
 extern EFI_GUID gEfiDriverBindingProtocolGuid;
@@ -53,6 +54,8 @@ extern EFI_GUID gEfiDriverConfigurationProtocolGuid;
 extern EFI_GUID gEfiDriverConfiguration2ProtocolGuid;
 extern EFI_GUID gEfiDriverDiagnosticsProtocolGuid;
 extern EFI_GUID gEfiDriverDiagnostics2ProtocolGuid;
+extern EFI_GUID gEfiShellParametersProtocolGuid;
+extern EFI_GUID gEfiShellInterfaceGuid;
 
 // Definition of PCDs used in libraries is in AutoGen.c
 
