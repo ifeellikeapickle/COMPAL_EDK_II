@@ -18,63 +18,6 @@
 
 #include "ACPI.h"
 
-
-EFI_STATUS
-EFIAPI
-GetOpRegion (
-    EFI_ACPI_DESCRIPTION_HEADER     *Table
-)
-{
-    UINT8                           Encoding1;
-    UINT8                           Encoding2;
-    UINT16                          NameString[20];
-    UINTN                           Index;
-
-    for (Index = 0; Index < Table->Length; Index++, Table++) {
-        Encoding1 = (UINTN)Table & 0xFF;
-        Encoding2 = (UINTN)(Table + 1) & 0xFF;
-        //Print (L"E1 = %lx\n", Encoding1);
-        //Print (L"E2 = %lx\n", Encoding2);
-
-        if (Encoding1 == 0x5B && Encoding2 == 0x80) {
-            NameString[0] = (UINTN)(Table + 2) & 0xFF;
-            NameString[1] = (UINTN)(Table + 3) & 0xFF;
-            NameString[2] = (UINTN)(Table + 4) & 0xFF;
-            NameString[3] = (UINTN)(Table + 5) & 0xFF;
-            Print (L"%s\n", NameString);
-        }
-    }
-
-    return EFI_SUCCESS;
-}
-
-/*
-VOID
-EFIAPI
-GetOpRegion (
-    EFI_ACPI_DESCRIPTION_HEADER     *Table
-)
-{
-    AML_OP_REGION_32_8              *OpRegion;
-    //UINT16                          NameString[20];
-    //UINTN                           Index;
-
-    for (OpRegion = (AML_OP_REGION_32_8 *) (Table + 1);
-        OpRegion <= (AML_OP_REGION_32_8 *) ((UINT8 *)Table + Table->Length);
-        OpRegion  = (AML_OP_REGION_32_8 *) ((UINT8 *)OpRegion + 1)) {
-
-        if (OpRegion->NameString == 0x53564E47) {
-            Print (L"GNVS found\n");
-            Print (L" Region Space: %02x\n", OpRegion->RegionSpace);
-            Print (L" DWord Prefix: %02x\n", OpRegion->DWordPrefix);
-            Print (L"  Byte Prefix: %02x\n", OpRegion->BytePrefix);
-            Print (L"Region Offset: %08x\n", OpRegion->RegionOffset);
-            Print (L"Region Length: %d\n", OpRegion->RegionLen);
-        }
-    }
-}
-*/
-
 EFI_STATUS
 EFIAPI
 PrintGuid (
@@ -161,19 +104,19 @@ UefiMain(
     EFI_STATUS                                      Status;
     UINTN                                           Index;
     UINTN                                           EntryCount;
-    //UINT8                                           Encoding1;
-    //UINT8                                           Encoding2;
-    UINT16                                          RsdpSignature[20];
-    UINT16                                          RsdpOemId[20];
-    UINT16                                          XsdtSignature[20];
-    UINT16                                          FadtSignature[20];
-    UINT16                                          DsdtSignature[20];
+    CHAR16                                          RsdpSignature[20];
+    CHAR16                                          RsdpOemId[20];
+    CHAR16                                          XsdtSignature[20];
+    CHAR16                                          FadtSignature[20];
+    CHAR16                                          DsdtSignature[20];
+    CHAR16                                          RegionName[20];
     UINT64                                          *EntryPtr;
     EFI_ACPI_DESCRIPTION_HEADER                     *Xsdt;
     EFI_ACPI_DESCRIPTION_HEADER                     *Dsdt;
     EFI_ACPI_DESCRIPTION_HEADER                     *Entry;
     EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE       *Fadt;
     EFI_ACPI_6_0_ROOT_SYSTEM_DESCRIPTION_POINTER    *Rsdp;
+    OPERATION_REGION                                *OperationRegion;
     
 
     Status = EfiGetSystemConfigurationTable (&gEfiAcpi20TableGuid, (VOID **)&Rsdp);
@@ -239,7 +182,25 @@ UefiMain(
                     Print (L"   DSDT Signature: %s\n", DsdtSignature);
                     Print (L"      DSDT Length: %d\n", Dsdt->Length);
 
-                    Status = GetOpRegion (Dsdt);
+                    
+                    for (OperationRegion = (OPERATION_REGION *) (UINT8 *)Dsdt;
+                        OperationRegion <= (OPERATION_REGION *) ((UINT8 *)Dsdt + Dsdt->Length);
+                        OperationRegion  = (OPERATION_REGION *) ((UINT8 *)OperationRegion + 1)) {
+
+                            //Print (L"OpRegionOp = %04x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
+                            
+                            if ((OperationRegion->OpRegionOp == ENCODING_OPERATION_REGION) &&
+                                (OperationRegion->RegionSpace == REGION_SPACE_SYSTEM_MEMORY)) {
+                                    Print (L"%08x", OperationRegion->NameString);
+                                    ZeroMem (RegionName, sizeof(RegionName));
+                                    RegionName[0] = (OperationRegion->NameString >> 0 & 0xFF);
+                                    RegionName[1] = (OperationRegion->NameString >> 8 & 0xFF);
+                                    RegionName[2] = (OperationRegion->NameString >> 16 & 0xFF);
+                                    RegionName[3] = (OperationRegion->NameString >> 24 & 0xFF);
+                                    Print (L"(%s)\n", RegionName);
+                            }
+                    }
+                    
                 }
             }
         }
