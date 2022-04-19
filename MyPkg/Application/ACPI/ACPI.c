@@ -20,6 +20,35 @@
 
 EFI_STATUS
 EFIAPI
+SearchOperationRegion (
+    IN  EFI_ACPI_DESCRIPTION_HEADER     *Table
+)
+{
+    EFI_STATUS          Status;
+    CHAR16              RegionName[20];
+    OPERATION_REGION    *OperationRegion;
+    
+
+    for (OperationRegion = (OPERATION_REGION *) Table;
+        OperationRegion  < (OPERATION_REGION *) ((UINT8 *)Table + Table->Length);
+        OperationRegion  = (OPERATION_REGION *) ((UINT8 *)OperationRegion + 1)) {
+            if ((OperationRegion->OpRegionOp >> 16) == ENCODING_OPERATION_REGION &&
+                OperationRegion->RegionSpace == REGION_SPACE_SYSTEM_MEMORY) {
+                    Print (L" %08x", OperationRegion->NameString);
+                    ZeroMem (RegionName, sizeof(RegionName));
+                    RegionName[0] = (OperationRegion->NameString >> 0 & 0xFF);
+                    RegionName[1] = (OperationRegion->NameString >> 8 & 0xFF);
+                    RegionName[2] = (OperationRegion->NameString >> 16 & 0xFF);
+                    RegionName[3] = (OperationRegion->NameString >> 24 & 0xFF);
+                    Print (L" (%s)\n", RegionName);
+            }
+    }
+    Status = EFI_SUCCESS;
+    return Status;
+}
+
+EFI_STATUS
+EFIAPI
 PrintGuid (
     IN  EFI_GUID    *Guid
 )
@@ -110,7 +139,6 @@ UefiMain(
     CHAR16                                          XsdtSignature[20];
     CHAR16                                          FadtSignature[20];
     CHAR16                                          DsdtSignature[20];
-    CHAR16                                          RegionName[20];
     //UINT8                                           *Pointer;
     UINT64                                          *EntryPtr;
     EFI_ACPI_DESCRIPTION_HEADER                     *Xsdt;
@@ -118,7 +146,6 @@ UefiMain(
     EFI_ACPI_DESCRIPTION_HEADER                     *Entry;
     EFI_ACPI_6_0_FIXED_ACPI_DESCRIPTION_TABLE       *Fadt;
     EFI_ACPI_6_0_ROOT_SYSTEM_DESCRIPTION_POINTER    *Rsdp;
-    OPERATION_REGION                                *OperationRegion;
     
     Status = EfiGetSystemConfigurationTable (&gEfiAcpi20TableGuid, (VOID **)&Rsdp);
 
@@ -183,31 +210,7 @@ UefiMain(
                     Print (L"   DSDT Signature: %s\n", DsdtSignature);
                     Print (L"      DSDT Length: %d\n", Dsdt->Length);
 
-                    
-                    for (OperationRegion = (OPERATION_REGION *) Dsdt;
-                        OperationRegion  < (OPERATION_REGION *) ((UINT8 *)Dsdt + Dsdt->Length);
-                        OperationRegion  = (OPERATION_REGION *) ((UINT8 *)OperationRegion + 1)) {
-                            //Count++;
-                            //Print (L"OpRegionOp = %08x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
-                            
-                            
-                            if ((OperationRegion->OpRegionOp >> 16) == ENCODING_OPERATION_REGION &&
-                                OperationRegion->RegionSpace == REGION_SPACE_SYSTEM_MEMORY) {
-                                    Print (L" %08x", OperationRegion->NameString);
-                                    ZeroMem (RegionName, sizeof(RegionName));
-                                    RegionName[0] = (OperationRegion->NameString >> 0 & 0xFF);
-                                    RegionName[1] = (OperationRegion->NameString >> 8 & 0xFF);
-                                    RegionName[2] = (OperationRegion->NameString >> 16 & 0xFF);
-                                    RegionName[3] = (OperationRegion->NameString >> 24 & 0xFF);
-                                    Print (L" (%s)\n", RegionName);
-                            }
-                    }
-                    
-                    //Pointer = (UINT8 *)Dsdt;
-                    //OperationRegion = (OPERATION_REGION *)Pointer;
-                    //Print (L"OpRegionOp = %04x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
-                    //OperationRegion = (OPERATION_REGION *)(Pointer + 1);
-                    //Print (L"OpRegionOp = %04x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
+                    SearchOperationRegion (Dsdt);
                 }
             }
         }
