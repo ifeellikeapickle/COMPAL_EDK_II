@@ -2,7 +2,7 @@
 #define REGION_SPACE_SYSTEM_MEMORY      0x00
 
 typedef struct {
-    UINT16                          OpRegionOp;
+    UINT32                          OpRegionOp;
     UINT32                          NameString;
     UINT8                           RegionSpace;
 } OPERATION_REGION;

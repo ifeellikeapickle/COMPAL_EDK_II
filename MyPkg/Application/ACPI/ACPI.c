@@ -104,12 +104,14 @@ UefiMain(
     EFI_STATUS                                      Status;
     UINTN                                           Index;
     UINTN                                           EntryCount;
+    //UINTN                                           Count = 0;
     CHAR16                                          RsdpSignature[20];
     CHAR16                                          RsdpOemId[20];
     CHAR16                                          XsdtSignature[20];
     CHAR16                                          FadtSignature[20];
     CHAR16                                          DsdtSignature[20];
     CHAR16                                          RegionName[20];
+    //UINT8                                           *Pointer;
     UINT64                                          *EntryPtr;
     EFI_ACPI_DESCRIPTION_HEADER                     *Xsdt;
     EFI_ACPI_DESCRIPTION_HEADER                     *Dsdt;
@@ -118,7 +120,6 @@ UefiMain(
     EFI_ACPI_6_0_ROOT_SYSTEM_DESCRIPTION_POINTER    *Rsdp;
     OPERATION_REGION                                *OperationRegion;
     
-
     Status = EfiGetSystemConfigurationTable (&gEfiAcpi20TableGuid, (VOID **)&Rsdp);
 
     if (Rsdp == NULL) {
@@ -183,24 +184,30 @@ UefiMain(
                     Print (L"      DSDT Length: %d\n", Dsdt->Length);
 
                     
-                    for (OperationRegion = (OPERATION_REGION *) (UINT8 *)Dsdt;
-                        OperationRegion <= (OPERATION_REGION *) ((UINT8 *)Dsdt + Dsdt->Length);
+                    for (OperationRegion = (OPERATION_REGION *) Dsdt;
+                        OperationRegion  < (OPERATION_REGION *) ((UINT8 *)Dsdt + Dsdt->Length);
                         OperationRegion  = (OPERATION_REGION *) ((UINT8 *)OperationRegion + 1)) {
-
-                            //Print (L"OpRegionOp = %04x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
+                            //Count++;
+                            //Print (L"OpRegionOp = %08x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
                             
-                            if ((OperationRegion->OpRegionOp == ENCODING_OPERATION_REGION) &&
-                                (OperationRegion->RegionSpace == REGION_SPACE_SYSTEM_MEMORY)) {
-                                    Print (L"%08x", OperationRegion->NameString);
+                            
+                            if ((OperationRegion->OpRegionOp >> 16) == ENCODING_OPERATION_REGION &&
+                                OperationRegion->RegionSpace == REGION_SPACE_SYSTEM_MEMORY) {
+                                    Print (L" %08x", OperationRegion->NameString);
                                     ZeroMem (RegionName, sizeof(RegionName));
                                     RegionName[0] = (OperationRegion->NameString >> 0 & 0xFF);
                                     RegionName[1] = (OperationRegion->NameString >> 8 & 0xFF);
                                     RegionName[2] = (OperationRegion->NameString >> 16 & 0xFF);
                                     RegionName[3] = (OperationRegion->NameString >> 24 & 0xFF);
-                                    Print (L"(%s)\n", RegionName);
+                                    Print (L" (%s)\n", RegionName);
                             }
                     }
                     
+                    //Pointer = (UINT8 *)Dsdt;
+                    //OperationRegion = (OPERATION_REGION *)Pointer;
+                    //Print (L"OpRegionOp = %04x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
+                    //OperationRegion = (OPERATION_REGION *)(Pointer + 1);
+                    //Print (L"OpRegionOp = %04x, NameString = %08x, RegionSpace = %02x;\n", OperationRegion->OpRegionOp, OperationRegion->NameString, OperationRegion->RegionSpace);
                 }
             }
         }
