@@ -32,7 +32,7 @@ SearchOperationRegion (
     for (OperationRegion = (OPERATION_REGION *) Table;
         OperationRegion  < (OPERATION_REGION *) ((UINT8 *)Table + Table->Length);
         OperationRegion  = (OPERATION_REGION *) ((UINT8 *)OperationRegion + 1)) {
-            if ((OperationRegion->OpRegionOp >> 16) == ENCODING_OPERATION_REGION &&
+            if (OperationRegion->OpRegionOp == ENCODING_OPERATION_REGION &&
                 OperationRegion->RegionSpace == REGION_SPACE_SYSTEM_MEMORY) {
                     Print (L" %08x", OperationRegion->NameString);
                     ZeroMem (RegionName, sizeof(RegionName));
